@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState } from 'react';  // Don't forget to import useState
 import axios from 'axios';
+import styles from './Auth.module.css';
 
 function Auth() {
   const [formData, setFormData] = useState({
@@ -8,7 +9,7 @@ function Auth() {
     password: '',
     role: 'kid', // Default role
   });
-  
+
   const [message, setMessage] = useState(null);  // State for notifications
   const [error, setError] = useState(null);      // State for error messages
 
@@ -45,61 +46,71 @@ function Auth() {
   };
 
   return (
-    <div>
-      <h2>Register</h2>
+    <div className={styles.authContainer}>
+      <h2>🦸‍♀️ Register 🦸‍♂</h2>
       <form onSubmit={handleRegister}>
         <input
           type="text"
           name="name"
-          placeholder="Name"
+          placeholder="Enter your name 🎨"
           value={formData.name}
           onChange={handleChange}
           required
+          className={styles.input}
         />
         <input
           type="email"
           name="email"
-          placeholder="Email"
+          placeholder="Your email ✉️"
           value={formData.email}
           onChange={handleChange}
           required
+          className={styles.input}
         />
         <input
           type="password"
           name="password"
-          placeholder="Password"
+          placeholder="Create password 🔒"
           value={formData.password}
           onChange={handleChange}
           required
+          className={styles.input}
         />
-        <select name="role" value={formData.role} onChange={handleChange}>
-          <option value="kid">Kid</option>
-          <option value="parent">Parent</option>
-          <option value="wish-granter">Wish Granter</option>
-          <option value="user">User</option>
+        <select
+          name="role"
+          value={formData.role}
+          onChange={handleChange}
+          className={styles.select}
+        >
+          <option value="kid">Kid 👧</option>
+          <option value="parent">Parent 👩‍👦</option>
+          <option value="wish-granter">Wish Granter 🎁</option>
+          <option value="user">User 😄</option>
         </select>
-        <button type="submit">Register</button>
+        <button type="submit" className={styles.button}>Sign Up 💫</button>
       </form>
 
-      <h2>Login</h2>
+      <h2>�� Login 🚀</h2>
       <form onSubmit={handleLogin}>
         <input
           type="email"
           name="email"
-          placeholder="Email"
+          placeholder="Enter your email 📧"
           value={formData.email}
           onChange={handleChange}
           required
+          className={styles.input}
         />
         <input
           type="password"
           name="password"
-          placeholder="Password"
+          placeholder="Enter your password ��"
           value={formData.password}
           onChange={handleChange}
           required
+          className={styles.input}
         />
-        <button type="submit">Login</button>
+        <button type="submit" className={styles.button}>Login 🎮</button>
       </form>
 
       {/* Display message or error */}
