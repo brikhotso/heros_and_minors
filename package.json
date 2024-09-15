@@ -1,0 +1,43 @@
+{
+  "name": "heros-and-minors",
+  "version": "1.0.0",
+  "description": "Heros and Minors full-stack app for kids to create wish lists and play games.",
+  "main": "server.js",
+  "scripts": {
+    "start": "concurrently \"npm run server\" \"npm run client\"",
+    "server": "cd server && node server.js",
+    "client": "cd client && npm start",
+    "lint": "eslint .",
+    "build": "babel src -d dist",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "concurrently": "^9.0.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.3",
+    "express": "^4.19.2",
+    "jsonwebtoken": "^8.5.1",
+    "mongodb": "^6.8.1",
+    "mongoose": "^7.8.1"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.21.5",
+    "@babel/core": "^7.21.5",
+    "@babel/node": "^7.21.5",
+    "@babel/preset-env": "^7.21.5",
+    "eslint": "^8.27.0",
+    "nodemon": "^2.0.22"
+  },
+  "author": "Brenda",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/brikhotso/Heroes_And_Minors.git"
+  },
+  "keywords": [],
+  "bugs": {
+    "url": "https://github.com/brikhotso/Heroes_And_Minors/issues"
+  },
+  "homepage": "https://github.com/brikhotso/Heroes_And_Minors#readme"
+}
