@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import './Wishlist.css';
 
 function Wishlist() {
   const [wishData, setWishData] = useState({
@@ -145,61 +146,60 @@ function Wishlist() {
   };
 
   return (
-    <div>
-      <h2>Create a Wish</h2>
-      <form onSubmit={handleCreateWish}>
-        <input
-          type="text"
-          name="title"
-          placeholder="Wish Title"
-          value={wishData.title}
-          onChange={handleChange}
-          required
-        />
-        <textarea
-          name="description"
-          placeholder="Wish Description"
-          value={wishData.description}
-          onChange={handleChange}
-        />
-        <button type="submit">Create Wish</button>
-      </form>
+  <div className="wishlist-container">
+    <h2>🎉 Create a Wish 🎉</h2>
+    <form onSubmit={handleCreateWish}>
+      <input
+        type="text"
+        name="title"
+        placeholder="Wish Title ✨"
+        value={wishData.title}
+        onChange={handleChange}
+        required
+      />
+      <textarea
+        name="description"
+        placeholder="Wish Description 🌟"
+        value={wishData.description}
+        onChange={handleChange}
+      />
+      <button type="submit">Create Wish 🎁</button>
+    </form>
 
-      {/* Display success or error message */}
-      {message && <p style={{ color: 'green' }}>{message}</p>}
-      {error && <p style={{ color: 'red' }}>{error}</p>}
+    {/* Display success or error message */}
+    {message && <p className="success">{message}</p>}
+    {error && <p className="error">{error}</p>}
 
-      <h2>Wishlist</h2>
-      {/* Display the wishlist */}
-      <ul>
-        {wishlist.map((wish) => (
-          <li key={wish._id}>
-            <strong>{wish.title}</strong> - {wish.description} (Posted by: {wish.posted_by.name})
+    <h2>🌈 Your Wishlist 🌈</h2>
+    {/* Display the wishlist */}
+    <ul>
+      {wishlist.map((wish) => (
+        <li key={wish._id}>
+          <strong>{wish.title} 🎈</strong> - {wish.description} (Posted by: {wish.posted_by.name})
 
-            {/* Conditionally render buttons based on the wish's status and the current user */}
-            {wish.status === 'pending' && (
-              <>
-                {wish.posted_by._id.toString() === currentUserId ? (
-                  <>
-                    <button onClick={() => handleUpdateWish(wish._id)}>Edit</button>
-                    <button onClick={() => handleDeleteWish(wish._id)}>Delete</button>
-                  </>
-                ) : (
-                  <button onClick={() => handleGrantWish(wish._id)}>Grant</button>
-                )}
-              </>
-            )}
+          {/* Conditionally render buttons based on the wish's status and the current user */}
+          {wish.status === 'pending' && (
+            <>
+              {wish.posted_by._id.toString() === currentUserId ? (
+                <>
+                  <button onClick={() => handleUpdateWish(wish._id)}>✏️ Edit</button>
+                  <button onClick={() => handleDeleteWish(wish._id)}>❌ Delete</button>
+                </>
+              ) : (
+                <button onClick={() => handleGrantWish(wish._id)}>🌟 Grant</button>
+              )}
+            </>
+          )}
 
-            {wish.status === 'granted' && wish.posted_by._id.toString() === currentUserId && (
-              <button onClick={() => handleFulfillWish(wish._id)}>Mark as Fulfilled</button>
-            )}
+          {wish.status === 'granted' && wish.posted_by._id.toString() === currentUserId && (
+            <button onClick={() => handleFulfillWish(wish._id)}>✅ Mark as Fulfilled</button>
+          )}
 
-            <p>Status: {wish.status}</p>
-          </li>
-        ))}
-      </ul>
-    </div>
-  );
+          <p>Status: {wish.status}</p>
+        </li>
+      ))}
+    </ul>
+  </div>
+ );
 }
-
 export default Wishlist;

@@ -1,12 +1,12 @@
 /* Wishlist.css */
-h2 {
+.wishlist-container h2 {
   font-size: 2rem;
   color: #ff6f61; /* Bright color */
   text-align: center;
   margin-bottom: 20px;
 }
 
-form {
+.wishlist-container form {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -20,11 +20,11 @@ form {
   transition: transform 0.3s ease;
 }
 
-form:hover {
+.wishlist-container form:hover {
   transform: scale(1.05); /* Small zoom-in effect when hovering */
 }
 
-input, textarea {
+.wishlist-container input, .wishlist-container textarea {
   font-size: 1rem;
   padding: 10px;
   margin: 10px 0;
@@ -35,11 +35,11 @@ input, textarea {
   outline: none;
 }
 
-input:focus, textarea:focus {
+.wishlist-container input:focus, .wishlist-container textarea:focus {
   border-color: #ff9f80;
 }
 
-button {
+.wishlist-container button {
   background-color: #ff6f61;
   color: white;
   padding: 10px 20px;
@@ -51,18 +51,18 @@ button {
   transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
-button:hover {
+.wishlist-container button:hover {
   background-color: #ff9f80; /* Brighter color on hover */
   transform: scale(1.1);
 }
 
-ul {
+.wishlist-container ul {
   list-style-type: none;
   padding: 0;
   margin: 20px 0;
 }
 
-li {
+.wishlist-container li {
   background-color: #ffecd1;
   padding: 10px;
   margin: 10px 0;
@@ -70,7 +70,7 @@ li {
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
-p {
+.wishlist-container p {
   font-size: 1rem;
   margin: 5px 0;
 }
