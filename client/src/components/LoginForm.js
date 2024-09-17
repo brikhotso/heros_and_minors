@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import styles from './Auth.module.css';
+import { useNavigate } from 'react-router-dom';
 
 function LoginForm() {
   const [formData, setFormData] = useState({
@@ -15,6 +16,8 @@ function LoginForm() {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
+  const navigate = useNavigate();
+
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
@@ -25,6 +28,7 @@ function LoginForm() {
       setMessage('User logged in successfully!');
       setError(null);
       localStorage.setItem('token', response.data.token);
+      navigate('/home');  // Redirect to dashboard/home
     } catch (err) {
       setError(err.response?.data?.msg || 'Error during login');
       setMessage(null);

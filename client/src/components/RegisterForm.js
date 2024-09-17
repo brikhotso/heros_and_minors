@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import styles from './Auth.module.css';
+import { useNavigate } from 'react-router-dom';
 
 function RegisterForm() {
   const [formData, setFormData] = useState({
@@ -17,12 +18,15 @@ function RegisterForm() {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
+  const navigate = useNavigate();
+
   const handleRegister = async (e) => {
     e.preventDefault();
     try {
       const response = await axios.post('/api/auth/register', formData);
       setMessage('User registered successfully!');
       setError(null);
+      navigate('/login');
     } catch (err) {
       setError(err.response?.data?.msg || 'Error during registration');
       setMessage(null);
