@@ -1,8 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { useLocation } from 'react-router-dom';
 import './Donations.css';
 
 function DonationForm() {
+  const location = useLocation();
   const [donationData, setDonationData] = useState({
     title: '',
     description: '',
@@ -15,6 +17,20 @@ function DonationForm() {
   const [editDonationId, setEditDonationId] = useState(null);
 
   const token = localStorage.getItem('token');
+
+  useEffect(() => {
+    if (location.state && location.state.donation) {
+      const { donation } = location.state;
+      setDonationData({
+        title: donation.title,
+        description: donation.description,
+        type: donation.type,
+        condition: donation.condition,
+      });
+      setIsEditing(true);
+      setEditDonationId(donation._id);
+    }
+  }, [location.state]);
 
   const handleChange = (e) => {
     setDonationData({ ...donationData, [e.target.name]: e.target.value });

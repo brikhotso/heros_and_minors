@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 import './Donations.css';
 
 function DonationList() {
@@ -8,6 +9,7 @@ function DonationList() {
   const [error, setError] = useState(null);
   const [currentUser, setCurrentUser] = useState(null);
   const [requestsByDonation, setRequestsByDonation] = useState({});
+  const navigate = useNavigate();
 
   const token = localStorage.getItem('token');
 
@@ -119,7 +121,7 @@ function DonationList() {
   };
 
   const handleEditDonation = (donation) => {
-    // This function can be used to navigate to the DonationForm component with the donation data
+    navigate('/dashboard/donationform', { state: { donation } });
   };
 
   return (
