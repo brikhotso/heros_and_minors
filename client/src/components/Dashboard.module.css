@@ -1,0 +1,142 @@
+.dashboard {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  font-family: 'Comic Sans MS', cursive, sans-serif;
+  animation: gradientAnimation 5s ease infinite; /* Apply animation */
+  background: linear-gradient(135deg, #74ebd5, #acb6e5);
+  background-size: 400% 400%; /* For smoother animation */
+}
+
+@keyframes gradientAnimation {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.header {
+  background-color: rgba(255, 102, 153, 0.8); /* Add transparency for a smoother blend with the gradient */
+  color: white;
+  padding: 10px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  animation: fadeIn 1s; /* Animation */
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.logo h1 {
+  margin: 0;
+  font-size: 2rem; /* Bigger font */
+}
+
+.auth {
+  display: flex;
+  align-items: center;
+}
+
+.userInfo {
+  display: flex;
+  align-items: center;
+}
+
+.avatar {
+  border-radius: 50%;
+  margin-right: 10px;
+  transition: transform 0.3s; /* Animation */
+}
+
+.avatar:hover {
+  transform: scale(1.1); /* Fun hover effect */
+}
+
+.logoutBtn {
+  background-color: #fff;
+  color: #ff6699;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s; /* Animation */
+}
+
+.logoutBtn:hover {
+  background-color: #ffe6f2;
+}
+
+.loginBtn {
+  background-color: #fff;
+  color: #ff6699;
+  padding: 5px 10px;
+  border-radius: 5px;
+  text-decoration: none;
+  border: none;
+}
+
+.container {
+  display: flex;
+  height: 100%;
+}
+
+.sidebar {
+  width: 250px;
+  background-color: #ffecd1;
+  padding: 20px;
+  animation: slideIn 0.5s; /* Animation */
+}
+
+@keyframes slideIn {
+  from { transform: translateX(-100%); }
+  to { transform: translateX(0); }
+}
+
+.sidebar ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.sidebar ul li {
+  margin: 15px 0;
+}
+
+.sidebar ul li a {
+  text-decoration: none;
+  color: #ff6699;
+  font-size: 1.5rem; /* Bigger font */
+  transition: color 0.3s; /* Animation */
+}
+
+.sidebar ul li a:hover {
+  color: #ff3366;
+  font-weight: bold; /* Fun hover effect */
+}
+
+.mainContent {
+  flex-grow: 1;
+  padding: 20px;
+  background-color: #f7e9d7;
+  animation: bounceIn 0.5s; /* Animation */
+}
+
+@keyframes bounceIn {
+  from { transform: scale(0.9); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+.contentWrapper {
+  padding: 20px; /* Padding for inner content */
+  background-color: rgba(255, 255, 255, 0.9); /* Slightly opaque background */
+  border-radius: 10px; /* Rounded corners */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Subtle shadow */
+  margin: 20px 0; /* Spacing around the content */
+}
