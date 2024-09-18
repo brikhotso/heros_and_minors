@@ -101,6 +101,16 @@ router.post('/:donationId/request', authMiddleware, async (req, res) => {
       return res.status(403).json({ msg: 'Cannot request your own donation' });
     }
 
+    // Check if the user has already requested this donation
+    const existingRequest = await Request.findOne({
+      donation: donation._id,
+      interested_user: req.user.id,
+    });
+
+    if (existingRequest) {
+      return res.status(400).json({ msg: 'You have already requested this donation' });
+    }
+
     // Create a new request for the donation
     const newRequest = new Request({
       donation: donation._id,
@@ -109,12 +119,15 @@ router.post('/:donationId/request', authMiddleware, async (req, res) => {
 
     await newRequest.save();
 
-    // Optionally, update donation status
-    donation.status = 'requested'; 
-    await donation.save();
+    // Optionally, update donation status if it's the first request
+    if (donation.status === 'available') {
+      donation.status = 'requested'; 
+      await donation.save();
+    }
 
     res.json({ msg: 'Request made successfully', request: newRequest });
   } catch (err) {
+    console.error('Error making request:', err);
     res.status(500).json({ error: 'Server error' });
   }
 });
@@ -142,7 +155,8 @@ router.get('/:donationId/requests', authMiddleware, async (req, res) => {
   }
 });
 
-// Accept a request
+
+//Accept request
 router.post('/:donationId/accept-request/:requestId', authMiddleware, async (req, res) => {
   try {
     const donation = await Donation.findById(req.params.donationId);
@@ -152,17 +166,17 @@ router.post('/:donationId/accept-request/:requestId', authMiddleware, async (req
       return res.status(404).send('Donation or request not found');
     }
 
-    // Check if the request is in a state that can be accepted
+    // Ensure the request can be accepted
     if (request.status !== 'requested') {
       return res.status(400).send('Request cannot be accepted');
     }
 
-    // Update the donation with the interested user and status
-    donation.interested_user = request.interested_user._id; // Ensure this is an ObjectId
+    // Update the donation
+    donation.interested_user = request.interested_user._id;
     donation.status = 'accepted';
     await donation.save();
 
-    // Optionally update the request status
+    // Update the request
     request.status = 'accepted';
     await request.save();
 
@@ -173,34 +187,24 @@ router.post('/:donationId/accept-request/:requestId', authMiddleware, async (req
   }
 });
 
-// Mark the donation as received by the requester
-router.put('/receive/:requestId', authMiddleware, async (req, res) => {
+
+router.post('/:donationId/mark-received', authMiddleware, async (req, res) => {
   try {
-    const request = await Request.findById(req.params.requestId);
-    if (!request) return res.status(404).json({ msg: 'Request not found' });
+    const donation = await Donation.findById(req.params.donationId);
+    if (!donation) return res.status(404).json({ msg: 'Donation not found' });
 
-    // Check if the logged-in user is the requester
-    if (request.interested_user.toString() !== req.user.id) {
-      return res.status(403).json({ msg: 'User not authorized' });
+    // Only the donor can mark the donation as received
+    if (donation.donor.toString() !== req.user.id) {
+      return res.status(403).json({ msg: 'Unauthorized to mark as received' });
     }
 
-    // Update the request status to 'received'
-    request.status = 'received';
-    await request.save();
+    donation.status = 'received';
+    await donation.save();
 
-    // Update the corresponding donation's status to 'received'
-    const donation = await Donation.findById(request.donation);
-    if (donation) {
-      donation.status = 'received';
-      await donation.save();
-    }
-
-    res.json({ msg: 'Donation marked as received', donation });
+    res.json({ msg: 'Donation marked as received successfully' });
   } catch (err) {
-    console.error(err);
     res.status(500).json({ error: 'Server error' });
   }
 });
-
 
 module.exports = router;
