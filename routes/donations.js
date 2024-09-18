@@ -115,6 +115,9 @@ router.post('/:donationId/request', authMiddleware, async (req, res) => {
     const newRequest = new Request({
       donation: donation._id,
       interested_user: req.user.id,
+      message: req.body.message,        // Added message field
+      location: req.body.location,      // Added location field
+      contactInfo: req.body.contactInfo, // Added contactInfo field
     });
 
     await newRequest.save();
