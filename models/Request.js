@@ -21,6 +21,18 @@ const RequestSchema = new Schema({
     type: Date,
     default: Date.now,
   },
+  message: { // New field for the user's message
+    type: String,
+    required: true,
+  },
+  location: { // New field for the user's location
+    type: String,
+    required: true,
+  },
+  contactInfo: { // New field for the user's contact info
+    type: String,
+    required: true,
+  },
 });
 
 module.exports = mongoose.model('Request', RequestSchema);
