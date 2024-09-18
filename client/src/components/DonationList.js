@@ -38,8 +38,10 @@ function DonationList() {
     }
   };
 
+  // Request a donation
   const handleRequestDonation = async (donationId) => {
     try {
+      const message = prompt('Enter a message with your request');
       await axios.post(`/api/donations/${donationId}/request`, {}, {
         headers: { Authorization: `Bearer ${token}` },
       });
@@ -60,17 +62,17 @@ function DonationList() {
         [donationId]: response.data,
       }));
     } catch (err) {
-      setError('Error fetching request');
+      setError('Error fetching requests');
     }
   };
 
-  const handleAcceptRequest = async (donationId, requestID) => {
+  const handleAcceptRequest = async (donationId, requestID) => { 
     const requests = requestsByDonation[donationId];
     if (requests && requests.length > 0) {
       const requestToAccept = requests.find(request => request._id === requestID);
       if (requestToAccept) {
         try {
-          await axios.post(`/api/donations/${donationId}/accept-request/${requestID}`, {}, {
+          await axios.post(`/api/donations/${donationId}/accept-request/${requestID}`, {}, { 
             headers: { Authorization: `Bearer ${token}` },
           });
           setMessage('Request accepted successfully!');
@@ -87,27 +89,7 @@ function DonationList() {
     }
   };
 
-  const handleMarkReceived = async (donationId) => {
-    const requests = requestsByDonation[donationId];
-    const acceptedRequest = requests ? requests.find(request => request.status === 'accepted') : null;
-
-    if (acceptedRequest) {
-      try {
-        await axios.put(`/api/donations/receive/${acceptedRequest._id}`, {}, {
-          headers: { Authorization: `Bearer ${token}` },
-        });
-
-        setMessage('Donation marked as received!');
-        fetchDonations();
-      } catch (err) {
-        setError('Error marking donation as received');
-        console.error(err);
-      }
-    } else {
-      setError('No accepted request found for this donation');
-    }
-  };
-
+  // Delete a donation
   const handleDeleteDonation = async (donationId) => {
     try {
       await axios.delete(`/api/donations/${donationId}`, {
@@ -120,8 +102,22 @@ function DonationList() {
     }
   };
 
+  // Navigate to edit donation form
   const handleEditDonation = (donation) => {
     navigate('/dashboard/donationform', { state: { donation } });
+  };
+
+  const handleMarkReceived = async (donationId) => {
+    try {
+      const response = await axios.post(`/api/donations/${donationId}/mark-received`, {}, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      setMessage(response.data.msg); // Show success message
+      fetchDonations(); // Refresh donations list
+    } catch (err) {
+      console.error('Error marking donation as received:', err.response ? err.response.data : err.message);
+      setError(err.response ? err.response.data.msg : 'Error marking donation as received');
+    }
   };
 
   return (
@@ -145,19 +141,25 @@ function DonationList() {
                 {requestsByDonation[donation._id] && requestsByDonation[donation._id].length > 0 && (
                   requestsByDonation[donation._id].map((request) => (
                     <button key={request._id} onClick={() => handleAcceptRequest(donation._id, request._id)}>
-                      Accept Request from {request.interested_user?.name} 🎉
+                      Accept Request from {request.requester?.name} 🎉
                     </button>
                   ))
                 )}
               </>
             )}
 
-            {donation.status === 'accepted' && currentUser && currentUser._id === donation.donor._id && (
-              <button onClick={() => handleMarkReceived(donation._id)}>Mark as Received ✅</button>
-            )}
 
-            {currentUser && currentUser._id === donation.donor._id && (
-              <>
+	    {donation.status === 'accepted' &&
+	      requestsByDonation[donation._id] &&
+	      requestsByDonation[donation._id].some(request =>
+	       request.status === 'accepted' && 
+               request.interested_user._id === currentUser._id
+	     ) && (
+               <button onClick={() => handleMarkReceived(donation._id)}>Mark as Received ✅</button>
+	     )}
+	    
+	    {currentUser && currentUser._id === donation.donor._id && (
+	      <>
                 <button onClick={() => handleEditDonation(donation)}>✏️ Edit Donation</button>
                 <button onClick={() => handleDeleteDonation(donation._id)}>❌ Delete Donation</button>
               </>
