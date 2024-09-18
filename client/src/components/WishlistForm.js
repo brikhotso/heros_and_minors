@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import './Wishlist.css';
+import styles from './Wishlist.module.css';
 
 function WishlistForm() {
   const [wishData, setWishData] = useState({
@@ -36,9 +36,9 @@ function WishlistForm() {
   };
 
   return (
-    <div>
+    <div className={styles.container}>
       <h2>🎉 Create a Wish 🎉</h2>
-      <form onSubmit={handleCreateWish}>
+      <form onSubmit={handleCreateWish} className={styles.form}>
         <input
           type="text"
           name="title"
@@ -46,17 +46,19 @@ function WishlistForm() {
           value={wishData.title}
           onChange={handleChange}
           required
+          className={styles.input}
         />
         <textarea
           name="description"
           placeholder="Wish Description 🌟"
           value={wishData.description}
           onChange={handleChange}
+          className={styles.textarea}
         />
-        <button type="submit">Create Wish 🎁</button>
+        <button type="submit" className={styles.button}>Create Wish 🎁</button>
       </form>
-      {message && <p className="success">{message}</p>}
-      {error && <p className="error">{error}</p>}
+      {message && <p className={styles.success}>{message}</p>}
+      {error && <p className={styles.error}>{error}</p>}
     </div>
   );
 }

@@ -1,12 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import './Wishlist.css';
+import styles from './Wishlist.module.css';
+import Modal from './Modal';
+import WishlistForm from './WishlistForm';
 
 function WishlistList() {
   const [wishlist, setWishlist] = useState([]);
   const [message, setMessage] = useState(null);
   const [error, setError] = useState(null);
   const [currentUserId, setCurrentUserId] = useState(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const token = localStorage.getItem('token');
 
@@ -113,11 +116,12 @@ function WishlistList() {
   };
 
   return (
-    <div>
+    <div className={styles.container}>
       <h2>🌈 Your Wishlist 🌈</h2>
-      <ul>
+      <button onClick={() => setIsModalOpen(true)} className={styles.createButton}>Create Wish 🎁</button>
+      <ul className={styles.wishlist}>
         {wishlist.map((wish) => (
-          <li key={wish._id}>
+          <li key={wish._id} className={styles.wishItem}>
             <strong>{wish.title} 🎈</strong> - {wish.description} (Posted by: {wish.posted_by.name})
 
             {wish.status === 'pending' && (
@@ -141,8 +145,11 @@ function WishlistList() {
           </li>
         ))}
       </ul>
-      {message && <p className="success">{message}</p>}
-      {error && <p className="error">{error}</p>}
+      {message && <p className={styles.success}>{message}</p>}
+      {error && <p className={styles.error}>{error}</p>}
+      <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
+        <WishlistForm />
+      </Modal>
     </div>
   );
 }
