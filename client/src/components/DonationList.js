@@ -1,7 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import './Donations.css';
+import Modal from './Modal';
+import DonationForm from './DonationForm';
+import styles from './Donations.module.css';
+
 
 function DonationList() {
   const [donations, setDonations] = useState([]);
@@ -10,6 +13,7 @@ function DonationList() {
   const [currentUser, setCurrentUser] = useState(null);
   const [requestsByDonation, setRequestsByDonation] = useState({});
   const navigate = useNavigate();
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const token = localStorage.getItem('token');
 
@@ -136,8 +140,9 @@ function DonationList() {
   };
 
   return (
-    <div>
+    <div className={styles.container}>
       <h2>📝 Donations List</h2>
+      <button onClick={() => setIsModalOpen(true)} className={styles.createButton}>Create Donation ��</button>
       <ul>
         {donations.map((donation) => (
           <li key={donation._id}>
@@ -188,6 +193,9 @@ function DonationList() {
       </ul>
       {message && <p className="success">{message}</p>}
       {error && <p className="error">{error}</p>}
+      <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
+        <DonationForm />
+      </Modal>
     </div>
   );
 }

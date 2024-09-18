@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useLocation } from 'react-router-dom';
-import './Donations.css';
+import './Donations.module.css';
 
 function DonationForm() {
   const location = useLocation();
