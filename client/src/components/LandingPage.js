@@ -98,6 +98,17 @@ const LandingPage = () => {
         </div>
       </section>
 
+      <section class="bubbles">
+            <div class="bubble"></div>
+            <div class="bubble"></div>
+            <div class="bubble"></div>
+            <div class="bubble"></div>
+            <div class="bubble"></div>
+            <div class="bubble"></div>
+            <div class="bubble"></div>
+            <div class="bubble"></div>
+      </section>
+	  
       {/* Testimonials Section */}
       <section id="testimonials" className="testimonials-section">
         <h2>Real Stories, Real Impact</h2>
@@ -108,8 +119,14 @@ const LandingPage = () => {
       {/* Contact Section */}
       <section id="contact" className="contact-section">
         <h2>Get in Touch</h2>
-        <p>Email: info@herosandminors.com</p>
-        <p>Phone: (123) 456-7890</p>
+        <div class="social-icons">
+          <a href="https://github.com/brikhotso" target="_blank">
+            <img src="https://github.githubassets.com/assets/GitHub-Mark-ea2971cee799.png" alt="GitHub" />
+          </a>
+          <a href="https://linkedin.com/in/brenda-rikhotso-a8747874" target="_blank">
+            <img src="https://static.vecteezy.com/system/resources/previews/023/986/970/large_2x/linkedin-logo-linkedin-logo-transparent-linkedin-icon-transparent-free-free-png.png" alt="LinkedIn" />
+          </a>
+        </div>
       </section>
 
       {/* Footer */}

@@ -1,9 +1,9 @@
 /* Container for the landing page */
 .landing-container {
   font-family: 'Comic Sans MS', sans-serif;
-  background: url('https://wallpaperaccess.com/full/1544247.jpg') no-repeat center center fixed;
+  background: url('https://i.imgur.com/OyGLzA8.png') no-repeat center center fixed;
   background-size: cover;
-  color: #ff6699;
+  color: #cc0055;
   text-align: center;
 }
 
@@ -11,12 +11,12 @@
 .landing-header {
   display: flex;
   justify-content: space-between;
-  padding: 20px;
-  background-color: rgba(0, 0, 0, 0.5);
+  padding: 5px;
+  background-color: ;
 }
 
 .landing-header .logo {
-  font-size: 24px;
+  font-size: 20px;
 }
 
 .landing-header nav ul {
@@ -25,13 +25,13 @@
 }
 
 .landing-header nav ul li {
-  margin: 0 15px;
+  margin: 0 20px;
 }
 
 .landing-header nav ul li a {
   color: blue;
   text-decoration: none;
-  font-size: 18px;
+  font-size: 15px;
 }
 
 .landing-header nav ul li a:hover {
@@ -53,19 +53,23 @@
 }
 
 .hero-buttons .get-started, .hero-buttons .learn-more {
-  background-color: #ff6699;
-  border: none;
-  padding: 15px 30px;
-  border-radius: 30px;
-  color: white;
-  font-size: 18px;
+  display: inline-grid;
+  padding: 20px 40px;
   margin: 20px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
+  font-size: 24px;
+  color: white;
+  background: #ff6699;
+  border-radius: 50px;
+  text-decoration: none;
+  box-shadow: 0 5px #ff3366;
+  transition: all 0.3s;
+  animation: grow 2s infinite alternate;
 }
 
 .hero-buttons .get-started:hover, .hero-buttons .learn-more:hover {
   background-color: #ff3366;
+  box-shadow: 0 10px #cc0055;
+  transform: translateY(-10px);
 }
 
 /* Modal styling */
@@ -83,7 +87,7 @@
 }
 
 .modal-content {
-  background-color: white;
+  background-color: blue;
   padding: 20px;
   border-radius: 10px;
   width: 300px;
@@ -120,21 +124,154 @@
   background-color: #ff3366;
 }
 
-/* Sections styling */
-.about-section, .features-section, .testimonials-section, .contact-section {
+/* About Section */
+.about-section {
+  padding: 80px 40px;
+  background-color: rgba(0, 0, 0, 0.8);
+  color: #ffffff;
+  text-align: center;
+}
+
+.about-section h2 {
+  font-size: 36px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  letter-spacing: 2px;
+}
+
+.about-section p {
+  font-size: 18px;
+  line-height: 1.8;
+  max-width: 800px;
+  margin: 0 auto 40px;
+  color: #dddddd;
+}
+
+/* Team Section */
+.team-section {
+  margin-top: 60px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  text-align: left;
+  background-color: rgba(0, 0, 0, 0.1);
+  padding: 10px;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.9);
+}
+
+.team-photo {
+  border-radius: 50%;
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+  border: 4px solid #ff6699;
+  margin-left: 200px;
+}
+
+.team-section p {
+  font-size: 18px;
+  color: white;
+  max-width: 500px;
+  margin-right: 250px;
+}
+
+/* Features Section */
+.features-section {
   padding: 50px 20px;
   background-color: rgba(0, 0, 0, 0.7);
 }
 
-.features-list div {
-  margin: 10px 0;
+.features-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  gap: 20px;
+}
+
+.feature-item {
+  background-color: rgba(255, 255, 255, 0.1);
+  padding: 20px;
+  border-radius: 10px;
+  width: 220px;
+  text-align: center;
+  transition: transform 0.3s ease;
+}
+
+.feature-item:hover {
+  transform: scale(1.05);
+}
+
+.feature-image {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
+
+.feature-item h3 a {
   font-size: 20px;
+  color: #ff6699;
+}
+
+.feature-item p {
+  color: white;
+  font-size: 16px;
+}
+
+/* Testimonials Section */
+.testimonials-section {
+  padding: 50px 20px;
+  background-color: rgba(0, 0, 0, 0.7);
+  color: white;
+}
+
+.testimonials-section p {
+  font-size: 18px;
+  margin: 10px 0;
+}
+
+/* Contact Section */
+/* Contact Section */
+.contact-section {
+  padding: 20px;
+  background-color: rgba(0, 0, 0, 0.6);
+  text-align: center;
+}
+
+.contact-section h2 {
+  font-size: 36px;
+  margin-bottom: 20px;
+}
+
+.social-icons {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.social-icons a {
+  text-decoration: none;
+}
+
+.social-icons img {
+  width: 60px;
+  height: 60px;
+  transition: transform 0.3s;
+  border-radius: 50%;
+}
+
+.social-icons img:hover {
+  transform: scale(1.1);
 }
 
 /* Footer */
 .footer {
   padding: 20px;
-  background-color: rgba(0, 0, 0, 0.8);
+  background-color: red;
+  color: white;
 }
 
 /* Bounce animation */
@@ -145,4 +282,124 @@
   50% {
     transform: translateY(-20px);
   }
+}
+
+
+/* Bubble Animations */
+.bubbles {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    pointer-events: none; /* Ensures bubbles don't interfere with interactions */
+    overflow: hidden;
+}
+
+.bubble {
+    position: absolute;
+    bottom: -150px;
+    width: 40px;
+    height: 40px;
+    background-color: rgba(200, 200, 200, 0.9);
+    border-radius: 50%;
+    animation: rise 8s infinite ease-in-out;
+}
+
+.bubble:nth-child(2) {
+    left: 20%;
+    width: 60px;
+    height: 60px;
+    animation-duration: 10s;
+    animation-delay: 2s;
+}
+
+.bubble:nth-child(3) {
+    left: 50%;
+    width: 80px;
+    height: 80px;
+    animation-duration: 12s;
+    animation-delay: 4s;
+}
+
+.bubble:nth-child(4) {
+    left: 70%;
+    width: 100px;
+    height: 100px;
+    animation-duration: 14s;
+    animation-delay: 6s;
+}
+
+.bubble:nth-child(5) {
+    left: 90%;
+    width: 120px;
+    height: 120px;
+    animation-duration: 16s;
+    animation-delay: 8s;
+}
+
+.bubble:nth-child(6) {
+    left: 40%;
+    width: 200px;
+    height: 200px;
+    animation-duration: 11s;
+    animation-delay: 2s;
+}
+
+.bubble:nth-child(7) {
+    left: 20%;
+    width: 80px;
+    height: 80px;
+    animation-duration: 13s;
+    animation-delay: 4s;
+}
+
+.bubble:nth-child(8) {
+    left: 90%;
+    width: 10px;
+    height: 100px;
+    animation-duration: 15s;
+    animation-delay: 6s;
+}
+
+.bubble:nth-child(9) {
+    left: 90%;
+    width: 50px;
+    height: 50px;
+    animation-duration: 17s;
+    animation-delay: 8s;
+}
+
+/* Animations */
+@keyframes bounce {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-20px);
+    }
+}
+
+@keyframes grow {
+    0% {
+        transform: scale(1);
+    }
+    100% {
+        transform: scale(1.2);
+    }
+}
+
+@keyframes rise {
+    0% {
+        bottom: -150px;
+        opacity: 0;
+    }
+    50% {
+        opacity: 0.5;
+    }
+    100% {
+        bottom: 100%;
+        opacity: 0;
+    }
 }
