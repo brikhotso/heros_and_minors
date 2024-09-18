@@ -41,17 +41,32 @@ function DonationList() {
   // Request a donation
   const handleRequestDonation = async (donationId) => {
     try {
-      const message = prompt('Enter a message with your request');
-      await axios.post(`/api/donations/${donationId}/request`, {}, {
-        headers: { Authorization: `Bearer ${token}` },
-      });
+      const message = prompt('Enter a message describing why you want the donation:');
+      const location = prompt('Enter your location:');
+      const contactInfo = prompt('Enter how you can be reached:');
+
+      if (!message || !location || !contactInfo) {
+        setError('All fields are required.');
+        return;
+      }
+
+      await axios.post(
+        `/api/donations/${donationId}/request`,
+        { message, location, contactInfo },
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      );
+
       setMessage('Request sent successfully!');
       fetchDonations();
     } catch (err) {
+      console.error('Error requesting donation:', err.response ? err.response.data : err.message);
       setError('Error requesting donation');
     }
   };
 
+  // Fetch requests
   const fetchRequests = async (donationId) => {
     try {
       const response = await axios.get(`/api/donations/${donationId}/requests`, {
@@ -134,20 +149,24 @@ function DonationList() {
             {donation.status === 'available' && currentUser && currentUser._id !== donation.donor._id && (
               <button onClick={() => handleRequestDonation(donation._id)}>Request Donation 🎁</button>
             )}
-
+           
             {donation.status === 'requested' && currentUser && currentUser._id === donation.donor._id && (
               <>
                 <button onClick={() => fetchRequests(donation._id)}>View Requests 👀</button>
                 {requestsByDonation[donation._id] && requestsByDonation[donation._id].length > 0 && (
                   requestsByDonation[donation._id].map((request) => (
-                    <button key={request._id} onClick={() => handleAcceptRequest(donation._id, request._id)}>
-                      Accept Request from {request.requester?.name} 🎉
-                    </button>
-                  ))
-                )}
-              </>
-            )}
-
+                   <div key={request._id} className="request-card">
+                     <p><strong>Message:</strong> {request.message}</p>
+                     <p><strong>Location:</strong> {request.location}</p>
+                     <p><strong>Contact Info:</strong> {request.contactInfo}</p>
+                     <button onClick={() => handleAcceptRequest(donation._id, request._id)}>
+                       Accept Request from {request.interested_user.name} 🎉
+		     </button>
+                   </div>
+	          ))
+		)}
+	      </>
+	    )}
 
 	    {donation.status === 'accepted' &&
 	      requestsByDonation[donation._id] &&
