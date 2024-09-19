@@ -19,14 +19,16 @@ function App() {
 	<Route path="/home" element={<Dashboard/>} />
 	<Route path="/login" element={<LoginForm />} />
         <Route path="/register" element={<RegisterForm />} />
+	<Route path="/testd" element={<WishlistList />} /> 
 	<Route path="/dashboard" element={<Dashboard/>}>  
           <Route path="donationform" element={<DonationForm />} />
 	  <Route path="donationlist" element={<DonationList />} />
 	  <Route path="wishlistlist" element={<WishlistList />} />
 	  <Route path="wishlistform" element={<WishlistForm />} />
-	  <Route path="mazegame" element={<MazeGame />} />
-	  <Route path="hiddenobjectgame" element={<HiddenObjectGame />} />
 	</Route>
+	<Route path="/mazegame" element={<MazeGame />} />
+	<Route path="/hiddenobjectgame" element={<HiddenObjectGame />} />
+
       </Routes>
     </Router>
   );
