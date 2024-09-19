@@ -22,11 +22,11 @@ app.use('/api/donations', require('./routes/donations'));
 // Serve static assets if in production
 if (process.env.NODE_ENV === 'production') {
   // Set static folder
-  app.use(express.static(path.join(__dirname, 'client', 'build')));
+  app.use(express.static(path.join(process.cwd(), 'client', 'build')));
 
   // For any routes not covered by the API, serve the frontend
   app.get('*', (req, res) => {
-    res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
+    res.sendFile(path.resolve(process.cwd(), 'client', 'build', 'index.html'));
   });
 }
 
