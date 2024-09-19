@@ -1,5 +1,6 @@
 import React, { useRef, useEffect, useState } from 'react';
 import styles from './MazeGame.module.css'; // Import the CSS module
+import { Link } from 'react-router-dom';
 
 const MazeGame = () => {
     const canvasRef = useRef(null);
@@ -9,6 +10,7 @@ const MazeGame = () => {
     const [player, setPlayer] = useState({ x: 1, y: 1 });
     const [showModal, setShowModal] = useState(false);
     const [modalMessage, setModalMessage] = useState('');
+
 
     // Define maze configurations for different difficulty levels
     const mazeConfigs = {
@@ -113,7 +115,7 @@ const MazeGame = () => {
     };
 
     const wallImage = new Image();
-    wallImage.src = 'https://i.imgur.com/jA0JsAk.gif';
+    wallImage.src = '/images/mazewall.png';
 
     const playerImage = new Image();
     playerImage.src = 'https://i.imgur.com/FcH1IrO.png';
@@ -245,7 +247,8 @@ const MazeGame = () => {
     }, [player, difficulty, currentMazeIndex]);
 
     return (
-        <div id="mazeContainer" className={styles.mazeContainer}>
+          <div id="mazeContainer" className={styles.mazeContainer}>
+	    <Link to="/dashboard" className={styles.backButton}>Back to Dashboard</Link>
             <div id="mazeControls" className={styles.mazeControls}>
                 <select id="difficulty" value={difficulty} onChange={handleDifficultyChange} className={styles.difficulty}>
                     <option value="easy">Easy</option>

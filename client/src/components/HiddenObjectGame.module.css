@@ -120,3 +120,21 @@
     border-radius: 50%;
     background: rgba(255, 255, 255, 0.8);
 }
+
+.backButton {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  padding: 10px 20px;
+  border-radius: 5px;
+  border: none;
+  background-color: #ff6699;
+  color: white;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+}
+
+.backButton:hover {
+  background-color: #ff3366;
+}

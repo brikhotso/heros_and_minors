@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import styles from './HiddenObjectGame.module.css';
+import { Link } from 'react-router-dom';
 
 const HiddenObjectGame = () => {
   const objects = [
@@ -28,7 +29,8 @@ const HiddenObjectGame = () => {
   };
 
   return (
-    <div className={styles.gameContainer}>
+      <div className={styles.gameContainer}>
+      <Link to="/dashboard" className={styles.backButton}>Back to Dashboard</Link>
       <div className={styles.gameContainerInner}>
         <div className={styles.instructionContainer}>
           {!gameOver && (
