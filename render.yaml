@@ -1,0 +1,12 @@
+# render.yaml
+
+services:
+  - type: web
+    name: heros-and-minors-frontend
+    env: static
+    plan: free
+    buildCommand: cd client && npm install && npm run build
+    staticPublishPath: client/build
+    envVars:
+      - key: REACT_APP_API_URL
+        value: https://heros-and-minors-g2g3.onrender.com
