@@ -1,16 +1,35 @@
-import React, { useState } from 'react';
-import { Link, Outlet } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { Link, Outlet, useNavigate } from 'react-router-dom';
+import axios from 'axios';
 import styles from './Dashboard.module.css';
 import { FaHome, FaPuzzlePiece, FaSearch, FaGift } from 'react-icons/fa'; // Add fun icons
 
 function Dashboard() {
   const [isLoggedIn, setIsLoggedIn] = useState(true);
-  const userName = "User";
+  const [userName, setUserName] = useState('');
+  const [error, setError] = useState(null);
+  const token = localStorage.getItem('token');
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const fetchCurrentUser = async () => {
+      try {
+        const response = await axios.get('/api/auth/me', {
+          headers: { Authorization: `Bearer ${token}` },
+        });
+        setUserName(response.data.name);
+      } catch (err) {
+        setError('Error fetching current user');
+      }
+    };
+
+    fetchCurrentUser();
+  }, [token]);
 
   const handleLogout = () => {
     localStorage.removeItem('token');
     setIsLoggedIn(false);
-    // Redirect to login or landing page
+    navigate('/'); // Redirect to home page
   };
 
   return (
@@ -22,12 +41,7 @@ function Dashboard() {
         <div className={styles.auth}>
           {isLoggedIn ? (
             <div className={styles.userInfo}>
-              <img
-                src="https://via.placeholder.com/40"
-                alt="Avatar"
-                className={styles.avatar}
-              />
-              <span>{userName}</span>
+              <span role="img" aria-label="waving hand">👋</span> Welcome, {userName}   !
               <button onClick={handleLogout} className={styles.logoutBtn}>Logout</button>
             </div>
           ) : (
@@ -39,15 +53,17 @@ function Dashboard() {
       <div className={styles.container}>
         <aside className={styles.sidebar}>
           <ul>
-            <li><Link to="/dashboard/mazegame"><FaPuzzlePiece /> Maze Game</Link></li>
-            <li><Link to="/dashboard/hiddenobjectgame"><FaSearch /> Hidden Object Game</Link></li>
+            <li><Link to="/mazegame"><FaPuzzlePiece /> Maze Game</Link></li> {/* Direct link to maze game */}
+            <li><Link to="/hiddenobjectgame"><FaSearch /> Hidden Object Game</Link></li>
             <li><Link to="/dashboard/wishlistlist"><FaGift /> Wishlist</Link></li>
             <li><Link to="/dashboard/donationlist"><FaHome /> Donations</Link></li>
           </ul>
         </aside>
 
         <main className={styles.mainContent}>
-          <Outlet />
+          <div className={styles.contentWrapper}>
+            <Outlet />
+          </div>
         </main>
       </div>
     </div>

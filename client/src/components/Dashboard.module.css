@@ -1,10 +1,12 @@
+/* Dashboard.module.css */
+
 .dashboard {
   display: flex;
   flex-direction: column;
   height: 100vh;
   font-family: 'Comic Sans MS', cursive, sans-serif;
   animation: gradientAnimation 5s ease infinite; /* Apply animation */
-  background: linear-gradient(135deg, #74ebd5, #acb6e5);
+  background-color: white;
   background-size: 400% 400%; /* For smoother animation */
 }
 
@@ -21,13 +23,14 @@
 }
 
 .header {
-  background-color: rgba(255, 102, 153, 0.8); /* Add transparency for a smoother blend with the gradient */
+  background-color: silver; /* Add transparency for a smoother blend with the gradient */
   color: white;
   padding: 10px 20px;
   display: flex;
   justify-content: space-between;
   align-items: center;
   animation: fadeIn 1s; /* Animation */
+  
 }
 
 @keyframes fadeIn {
@@ -50,15 +53,6 @@
   align-items: center;
 }
 
-.avatar {
-  border-radius: 50%;
-  margin-right: 10px;
-  transition: transform 0.3s; /* Animation */
-}
-
-.avatar:hover {
-  transform: scale(1.1); /* Fun hover effect */
-}
 
 .logoutBtn {
   background-color: #fff;
@@ -85,14 +79,17 @@
 
 .container {
   display: flex;
-  height: 100%;
+  height: calc(100vh - 60px); /* Adjust height to account for header */
+  overflow: hidden; /* Prevent overflow */
 }
 
 .sidebar {
   width: 250px;
-  background-color: #ffecd1;
+  background-color: white;
   padding: 20px;
-  animation: slideIn 0.5s; /* Animation */
+  margin: 20px;
+  
+  overflow-y: auto; /* Make sidebar scrollable */
 }
 
 @keyframes slideIn {
@@ -106,7 +103,7 @@
 }
 
 .sidebar ul li {
-  margin: 15px 0;
+  margin-top: 50px;
 }
 
 .sidebar ul li a {
@@ -114,6 +111,8 @@
   color: #ff6699;
   font-size: 1.5rem; /* Bigger font */
   transition: color 0.3s; /* Animation */
+  display: flex;
+  align-items: center;
 }
 
 .sidebar ul li a:hover {
@@ -121,11 +120,16 @@
   font-weight: bold; /* Fun hover effect */
 }
 
+.sidebar ul li a svg {
+  margin-right: 10px; /* Space between icon and text */
+}
+
 .mainContent {
   flex-grow: 1;
   padding: 20px;
-  background-color: #f7e9d7;
+  background: url("https://cdn.dribbble.com/users/962321/screenshots/2921705/children.gif") no-repeat center;
   animation: bounceIn 0.5s; /* Animation */
+  overflow-y: auto; /* Make main content scrollable */
 }
 
 @keyframes bounceIn {
@@ -135,7 +139,7 @@
 
 .contentWrapper {
   padding: 20px; /* Padding for inner content */
-  background-color: rgba(255, 255, 255, 0.9); /* Slightly opaque background */
+  background-color: white; /* Slightly opaque background */
   border-radius: 10px; /* Rounded corners */
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Subtle shadow */
   margin: 20px 0; /* Spacing around the content */
