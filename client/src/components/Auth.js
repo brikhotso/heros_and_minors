@@ -1,4 +1,4 @@
-import axiosInstance from './axiosConfig';
+import axiosInstance from '../axiosConfig';
 import React, { useState } from 'react';  // Don't forget to import useState
 import axios from 'axios';
 import styles from './Auth.module.css';

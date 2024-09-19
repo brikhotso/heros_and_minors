@@ -1,4 +1,4 @@
-import axiosInstance from './axiosConfig';
+import axiosInstance from '../axiosConfig';
 import React from 'react';
 import styles from './Modal.module.css';
 
