@@ -1,3 +1,4 @@
+import axiosInstance from './axiosConfig';
 import React, { useState } from 'react';
 import './LandingPage.css'; // Isolated styles for the landing page
 

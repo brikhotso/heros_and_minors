@@ -1,3 +1,4 @@
+import axiosInstance from './axiosConfig';
 import React, { useState } from 'react';
 import axios from 'axios';
 import styles from './Wishlist.module.css';

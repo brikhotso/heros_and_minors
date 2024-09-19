@@ -1,3 +1,4 @@
+import axiosInstance from './axiosConfig';
 import React, { useRef, useEffect, useState } from 'react';
 import styles from './MazeGame.module.css'; // Import the CSS module
 import { Link } from 'react-router-dom';
