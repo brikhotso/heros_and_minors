@@ -4,7 +4,7 @@
   "description": "Heros and Minors full-stack app for kids to create wish lists and play games.",
   "main": "server.js",
   "scripts": {
-    "start": "concurrently \"npm run server\" \"npm run client\"",
+    "start": "npm run server && npm run client",
     "server": "node server.js",
     "client": "cd client && npm start",
     "lint": "eslint .",
