@@ -1,4 +1,3 @@
-import axiosInstance from '../axiosConfig';
 import React, { useState, useEffect } from 'react';
 import styles from './HiddenObjectGame.module.css';
 import { Link } from 'react-router-dom';

@@ -1,6 +1,5 @@
 import axiosInstance from '../axiosConfig';
 import React, { useState } from 'react';
-import axios from 'axios';
 import styles from './Auth.module.css';
 import { useNavigate } from 'react-router-dom';
 
@@ -24,7 +23,7 @@ function RegisterForm() {
   const handleRegister = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('/api/auth/register', formData);
+      const response = await axiosInstance.post('/api/auth/register', formData);
       setMessage('User registered successfully!');
       setError(null);
       navigate('/login');

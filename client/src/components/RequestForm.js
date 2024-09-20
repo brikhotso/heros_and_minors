@@ -1,6 +1,5 @@
 import axiosInstance from '../axiosConfig';
 import React, { useState } from 'react';
-import axios from 'axios';
 
 function RequestForm({ donationId, onRequestSent }) {
   const [message, setMessage] = useState('');
@@ -22,7 +21,7 @@ function RequestForm({ donationId, onRequestSent }) {
 
     try {
       // Sending the request
-      const response = await axios.post(`/api/donations/${donationId}/request`, {
+      const response = await axiosInstance.post(`/api/donations/${donationId}/request`, {
         message,
         contact_details: contactDetails,
         location,

@@ -78,12 +78,12 @@ const LandingPage = () => {
         <div className="features-list">
           <div className="feature-item">
             <img src="/images/maze-game.jpg" alt="Maze Game" className="feature-image" />
-            <h3><a href="/dashboard/mazegame" >Maze Game</a></h3>
+            <h3><a href="/mazegame" >Maze Game</a></h3>
             <p>Engaging puzzle game for kids, developed with love and input from my son.</p>
           </div>
           <div className="feature-item">
             <img src="/images/hidden-object-game.jpg" alt="Hidden Object Game" className="feature-image" />
-            <h3><a href="/dashboard/hiddenobjectgame" >Hidden Object Game</a></h3>
+            <h3><a href="/hiddenobjectgame" >Hidden Object Game</a></h3>
             <p>Interactive game promoting cognitive development and fun.</p>
           </div>
           <div className="feature-item">

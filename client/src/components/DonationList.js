@@ -1,6 +1,5 @@
 import axiosInstance from '../axiosConfig';
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import Modal from './Modal';
 import DonationForm from './DonationForm';
@@ -21,7 +20,7 @@ function DonationList() {
   useEffect(() => {
     const fetchCurrentUser = async () => {
       try {
-        const response = await axios.get('/api/auth/me', {
+        const response = await axiosInstance.get('/api/auth/me', {
           headers: { Authorization: `Bearer ${token}` },
         });
         setCurrentUser(response.data);
@@ -36,7 +35,7 @@ function DonationList() {
 
   const fetchDonations = async () => {
     try {
-      const response = await axios.get('/api/donations');
+      const response = await axiosInstance.get('/api/donations');
       setDonations(response.data);
     } catch (err) {
       setError('Error fetching donations');
@@ -55,7 +54,7 @@ function DonationList() {
         return;
       }
 
-      await axios.post(
+      await axiosInstance.post(
         `/api/donations/${donationId}/request`,
         { message, location, contactInfo },
         {
@@ -74,7 +73,7 @@ function DonationList() {
   // Fetch requests
   const fetchRequests = async (donationId) => {
     try {
-      const response = await axios.get(`/api/donations/${donationId}/requests`, {
+      const response = await axiosInstance.get(`/api/donations/${donationId}/requests`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       setRequestsByDonation((prevRequests) => ({
@@ -92,7 +91,7 @@ function DonationList() {
       const requestToAccept = requests.find(request => request._id === requestID);
       if (requestToAccept) {
         try {
-          await axios.post(`/api/donations/${donationId}/accept-request/${requestID}`, {}, { 
+          await axiosInstance.post(`/api/donations/${donationId}/accept-request/${requestID}`, {}, { 
             headers: { Authorization: `Bearer ${token}` },
           });
           setMessage('Request accepted successfully!');
@@ -112,7 +111,7 @@ function DonationList() {
   // Delete a donation
   const handleDeleteDonation = async (donationId) => {
     try {
-      await axios.delete(`/api/donations/${donationId}`, {
+      await axiosInstance.delete(`/api/donations/${donationId}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       setMessage('Donation deleted successfully');
@@ -129,7 +128,7 @@ function DonationList() {
 
   const handleMarkReceived = async (donationId) => {
     try {
-      const response = await axios.post(`/api/donations/${donationId}/mark-received`, {}, {
+      const response = await axiosInstance.post(`/api/donations/${donationId}/mark-received`, {}, {
         headers: { Authorization: `Bearer ${token}` },
       });
       setMessage(response.data.msg); // Show success message

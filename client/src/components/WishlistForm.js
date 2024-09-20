@@ -1,6 +1,5 @@
 import axiosInstance from '../axiosConfig';
 import React, { useState } from 'react';
-import axios from 'axios';
 import styles from './Wishlist.module.css';
 
 function WishlistForm() {
@@ -20,7 +19,7 @@ function WishlistForm() {
   const handleCreateWish = async (e) => {
     e.preventDefault();
     try {
-      await axios.post('/api/wishes', wishData, {
+      await axiosInstance.post('/api/wishes', wishData, {
         headers: { Authorization: `Bearer ${token}` },
       });
       setMessage('Wish created successfully!');

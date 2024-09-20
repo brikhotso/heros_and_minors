@@ -1,6 +1,5 @@
 import axiosInstance from '../axiosConfig';
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
 import { useLocation } from 'react-router-dom';
 import './Donations.module.css';
 
@@ -41,7 +40,7 @@ function DonationForm() {
     e.preventDefault();
     try {
       const newDonationData = { ...donationData, status: 'available' };
-      const response = await axios.post('/api/donations', newDonationData, {
+      const response = await axiosInstance.post('/api/donations', newDonationData, {
         headers: { Authorization: `Bearer ${token}` },
       });
 
@@ -62,7 +61,7 @@ function DonationForm() {
   const handleUpdateDonation = async (e) => {
     e.preventDefault();
     try {
-      await axios.put(`/api/donations/${editDonationId}`, donationData, {
+      await axiosInstance.put(`/api/donations/${editDonationId}`, donationData, {
         headers: { Authorization: `Bearer ${token}` },
       });
       setMessage('Donation updated successfully!');

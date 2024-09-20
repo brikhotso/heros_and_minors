@@ -1,7 +1,6 @@
 import axiosInstance from '../axiosConfig';
 import React, { useState, useEffect } from 'react';
 import { Link, Outlet, useNavigate } from 'react-router-dom';
-import axios from 'axios';
 import styles from './Dashboard.module.css';
 import { FaHome, FaPuzzlePiece, FaSearch, FaGift } from 'react-icons/fa'; // Add fun icons
 
@@ -15,7 +14,7 @@ function Dashboard() {
   useEffect(() => {
     const fetchCurrentUser = async () => {
       try {
-        const response = await axios.get('/api/auth/me', {
+        const response = await axiosInstance.get('/api/auth/me', {
           headers: { Authorization: `Bearer ${token}` },
         });
         setUserName(response.data.name);

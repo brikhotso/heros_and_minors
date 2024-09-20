@@ -1,6 +1,5 @@
 import axiosInstance from '../axiosConfig';
 import React, { useState } from 'react';  // Don't forget to import useState
-import axios from 'axios';
 import styles from './Auth.module.css';
 
 function Auth() {
@@ -21,7 +20,7 @@ function Auth() {
   const handleRegister = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('/api/auth/register', formData);
+      const response = await axiosInstance.post('/api/auth/register', formData);
       setMessage('User registered successfully!');
       setError(null);  // Clear any previous errors
     } catch (err) {
@@ -33,7 +32,7 @@ function Auth() {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('/api/auth/login', {
+      const response = await axiosInstance.post('/api/auth/login', {
         email: formData.email,
         password: formData.password,
       });

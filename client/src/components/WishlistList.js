@@ -1,6 +1,5 @@
 import axiosInstance from '../axiosConfig';
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
 import styles from './Wishlist.module.css';
 import Modal from './Modal';
 import WishlistForm from './WishlistForm';
@@ -26,7 +25,7 @@ function WishlistList() {
 
   const fetchCurrentUser = async () => {
     try {
-      const response = await axios.get('/api/auth/me', {
+      const response = await axiosInstance.get('/api/auth/me', {
         headers: { Authorization: `Bearer ${token}` },
       });
       setCurrentUserId(response.data._id);
@@ -39,7 +38,7 @@ function WishlistList() {
 
   const fetchWishlist = async () => {
     try {
-      const response = await axios.get('/api/wishes');
+      const response = await axiosInstance.get('/api/wishes');
       setWishlist(response.data);
       console.log('Wishlist Data:', response.data);
     } catch (err) {
@@ -53,7 +52,7 @@ function WishlistList() {
     const updatedDescription = prompt('Enter new description:');
     if (updatedTitle || updatedDescription) {
       try {
-        await axios.put(
+        await axiosInstance.put(
           `/api/wishes/${wishId}`,
           { title: updatedTitle, description: updatedDescription },
           { headers: { Authorization: `Bearer ${token}` } }
@@ -71,7 +70,7 @@ function WishlistList() {
   const handleDeleteWish = async (wishId) => {
     if (window.confirm('Are you sure you want to delete this wish?')) {
       try {
-        await axios.delete(`/api/wishes/${wishId}`, {
+        await axiosInstance.delete(`/api/wishes/${wishId}`, {
           headers: { Authorization: `Bearer ${token}` },
         });
         setMessage('Wish deleted successfully!');
@@ -86,7 +85,7 @@ function WishlistList() {
 
   const handleGrantWish = async (wishId) => {
     try {
-      await axios.post(
+      await axiosInstance.post(
         `/api/wishes/${wishId}/grant`,
         {},
         { headers: { Authorization: `Bearer ${token}` } }
@@ -102,7 +101,7 @@ function WishlistList() {
 
   const handleFulfillWish = async (wishId) => {
     try {
-      await axios.put(
+      await axiosInstance.put(
         `/api/wishes/${wishId}/fulfill`,
         {},
         { headers: { Authorization: `Bearer ${token}` } }
