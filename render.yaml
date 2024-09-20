@@ -22,5 +22,5 @@ services:
         value: production
       - key: MONGO_URI
         fromDatabase:
-          name: your-database-name
+          name: heros_and_minors
           property: connectionString
