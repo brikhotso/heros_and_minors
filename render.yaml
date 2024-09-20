@@ -10,3 +10,17 @@ services:
     envVars:
       - key: REACT_APP_API_URL
         value: https://heros-and-minors-g2g3.onrender.com
+
+  - type: web
+    name: heros-and-minors-backend
+    env: node
+    plan: free
+    buildCommand: npm install
+    startCommand: npm run start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: MONGO_URI
+        fromDatabase:
+          name: your-database-name
+          property: connectionString
