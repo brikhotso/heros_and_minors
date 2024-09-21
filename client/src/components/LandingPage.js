@@ -17,6 +17,9 @@ const LandingPage = () => {
       {/* Header */}
       <header className="landing-header">
         <div className="logo">Heros & Minors</div>
+	  <Link to="/">
+            <img src="/images/long.png" alt="Heroes & Minors Logo" />
+          </Link>  
         <nav>
           <ul>
             <li><a href="#about">About</a></li>

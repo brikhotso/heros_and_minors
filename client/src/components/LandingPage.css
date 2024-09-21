@@ -15,8 +15,8 @@
   background-color: ;
 }
 
-.landing-header .logo {
-  font-size: 20px;
+.landing-header .logo img {
+ height: 50px;
 }
 
 .landing-header nav ul {
@@ -178,10 +178,21 @@
   margin-right: 250px;
 }
 
+.team-section h2 {
+  font-size: 36px;
+  margin-bottom: 20px;
+  color: #cc0055;
+}
 /* Features Section */
 .features-section {
   padding: 50px 20px;
   background-color: rgba(0, 0, 0, 0.7);
+}
+
+.Feature-section h2 {
+  font-size: 36px;
+  margin-bottom: 20px;
+  color: #cc0055;
 }
 
 .features-list {
@@ -234,6 +245,12 @@
   margin: 10px 0;
 }
 
+.testimonials-section h2 {
+  font-size: 36px;
+  margin-bottom: 20px;
+  color: #cc0055;
+}
+
 /* Contact Section */
 /* Contact Section */
 .contact-section {
@@ -245,6 +262,7 @@
 .contact-section h2 {
   font-size: 36px;
   margin-bottom: 20px;
+  color: #cc0055;
 }
 
 .social-icons {
