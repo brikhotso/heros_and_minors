@@ -5,7 +5,6 @@ import Modal from './Modal';
 import DonationForm from './DonationForm';
 import styles from './Donations.module.css';
 
-
 function DonationList() {
   const [donations, setDonations] = useState([]);
   const [message, setMessage] = useState(null);
@@ -19,6 +18,7 @@ function DonationList() {
 
   useEffect(() => {
     const fetchCurrentUser = async () => {
+      if (!token) return;
       try {
         const response = await axiosInstance.get('/api/auth/me', {
           headers: { Authorization: `Bearer ${token}` },
@@ -42,8 +42,11 @@ function DonationList() {
     }
   };
 
-  // Request a donation
   const handleRequestDonation = async (donationId) => {
+    if (!token) {
+      navigate('/login');
+      return;
+    }
     try {
       const message = prompt('Enter a message describing why you want the donation:');
       const location = prompt('Enter your location:');
@@ -70,8 +73,11 @@ function DonationList() {
     }
   };
 
-  // Fetch requests
   const fetchRequests = async (donationId) => {
+    if (!token) {
+      navigate('/login');
+      return;
+    }
     try {
       const response = await axiosInstance.get(`/api/donations/${donationId}/requests`, {
         headers: { Authorization: `Bearer ${token}` },
@@ -85,13 +91,17 @@ function DonationList() {
     }
   };
 
-  const handleAcceptRequest = async (donationId, requestID) => { 
+  const handleAcceptRequest = async (donationId, requestID) => {
+    if (!token) {
+      navigate('/login');
+      return;
+    }
     const requests = requestsByDonation[donationId];
     if (requests && requests.length > 0) {
       const requestToAccept = requests.find(request => request._id === requestID);
       if (requestToAccept) {
         try {
-          await axiosInstance.post(`/api/donations/${donationId}/accept-request/${requestID}`, {}, { 
+          await axiosInstance.post(`/api/donations/${donationId}/accept-request/${requestID}`, {}, {
             headers: { Authorization: `Bearer ${token}` },
           });
           setMessage('Request accepted successfully!');
@@ -108,8 +118,11 @@ function DonationList() {
     }
   };
 
-  // Delete a donation
   const handleDeleteDonation = async (donationId) => {
+    if (!token) {
+      navigate('/login');
+      return;
+    }
     try {
       await axiosInstance.delete(`/api/donations/${donationId}`, {
         headers: { Authorization: `Bearer ${token}` },
@@ -121,12 +134,19 @@ function DonationList() {
     }
   };
 
-  // Navigate to edit donation form
   const handleEditDonation = (donation) => {
+    if (!token) {
+      navigate('/login');
+      return;
+    }
     navigate('/dashboard/donationform', { state: { donation } });
   };
 
   const handleMarkReceived = async (donationId) => {
+    if (!token) {
+      navigate('/login');
+      return;
+    }
     try {
       const response = await axiosInstance.post(`/api/donations/${donationId}/mark-received`, {}, {
         headers: { Authorization: `Bearer ${token}` },
@@ -139,10 +159,21 @@ function DonationList() {
     }
   };
 
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+    fetchDonations(); // Refresh donation list
+  };
+
   return (
     <div className={styles.container}>
       <h2>📝 Donations List</h2>
-      <button onClick={() => setIsModalOpen(true)} className={styles.createButton}>Create Donation ��</button>
+      <button onClick={() => {
+        if (!token) {
+          navigate('/login');
+        } else {
+          setIsModalOpen(true);
+        }
+      }} className={styles.createButton}>Create Donation 🎁</button>
       <ul>
         {donations.map((donation) => (
           <li key={donation._id}>
@@ -154,36 +185,36 @@ function DonationList() {
             {donation.status === 'available' && currentUser && currentUser._id !== donation.donor._id && (
               <button onClick={() => handleRequestDonation(donation._id)}>Request Donation 🎁</button>
             )}
-           
+
             {donation.status === 'requested' && currentUser && currentUser._id === donation.donor._id && (
               <>
                 <button onClick={() => fetchRequests(donation._id)}>View Requests 👀</button>
                 {requestsByDonation[donation._id] && requestsByDonation[donation._id].length > 0 && (
                   requestsByDonation[donation._id].map((request) => (
-                   <div key={request._id} className="request-card">
-                     <p><strong>Message:</strong> {request.message}</p>
-                     <p><strong>Location:</strong> {request.location}</p>
-                     <p><strong>Contact Info:</strong> {request.contactInfo}</p>
-                     <button onClick={() => handleAcceptRequest(donation._id, request._id)}>
-                       Accept Request from {request.interested_user.name} 🎉
-		     </button>
-                   </div>
-	          ))
-		)}
-	      </>
-	    )}
+                    <div key={request._id} className="request-card">
+                      <p><strong>Message:</strong> {request.message}</p>
+                      <p><strong>Location:</strong> {request.location}</p>
+                      <p><strong>Contact Info:</strong> {request.contactInfo}</p>
+                      <button onClick={() => handleAcceptRequest(donation._id, request._id)}>
+                        Accept Request from {request.interested_user.name} 🎉
+                      </button>
+                    </div>
+                  ))
+                )}
+              </>
+            )}
 
-	    {donation.status === 'accepted' &&
-	      requestsByDonation[donation._id] &&
-	      requestsByDonation[donation._id].some(request =>
-	       request.status === 'accepted' && 
-               request.interested_user._id === currentUser._id
-	     ) && (
-               <button onClick={() => handleMarkReceived(donation._id)}>Mark as Received ✅</button>
-	     )}
-	    
-	    {currentUser && currentUser._id === donation.donor._id && (
-	      <>
+            {donation.status === 'accepted' &&
+              requestsByDonation[donation._id] &&
+              requestsByDonation[donation._id].some(request =>
+                request.status === 'accepted' &&
+                request.interested_user._id === currentUser._id
+              ) && (
+                <button onClick={() => handleMarkReceived(donation._id)}>Mark as Received ✅</button>
+              )}
+
+            {currentUser && currentUser._id === donation.donor._id && (
+              <>
                 <button onClick={() => handleEditDonation(donation)}>✏️ Edit Donation</button>
                 <button onClick={() => handleDeleteDonation(donation._id)}>❌ Delete Donation</button>
               </>

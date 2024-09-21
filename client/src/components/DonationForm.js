@@ -1,10 +1,11 @@
 import axiosInstance from '../axiosConfig';
 import React, { useState, useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import './Donations.module.css';
 
-function DonationForm() {
+function DonationForm({ onDonationCreatedOrUpdated }) {
   const location = useLocation();
+  const navigate = useNavigate();
   const [donationData, setDonationData] = useState({
     title: '',
     description: '',
@@ -38,9 +39,13 @@ function DonationForm() {
 
   const handleCreateDonation = async (e) => {
     e.preventDefault();
+    if (!token) {
+      navigate('/login');
+      return;
+    }
     try {
       const newDonationData = { ...donationData, status: 'available' };
-      const response = await axiosInstance.post('/api/donations', newDonationData, {
+      await axiosInstance.post('/api/donations', newDonationData, {
         headers: { Authorization: `Bearer ${token}` },
       });
 
@@ -53,6 +58,8 @@ function DonationForm() {
         type: 'item',
         condition: 'new',
       });
+
+      onDonationCreatedOrUpdated(); // Call the callback to refresh the donation list
     } catch (err) {
       setError('Error creating donation');
     }
@@ -60,12 +67,18 @@ function DonationForm() {
 
   const handleUpdateDonation = async (e) => {
     e.preventDefault();
+    if (!token) {
+      navigate('/login');
+      return;
+    }
     try {
       await axiosInstance.put(`/api/donations/${editDonationId}`, donationData, {
         headers: { Authorization: `Bearer ${token}` },
       });
       setMessage('Donation updated successfully!');
       setIsEditing(false);
+
+      onDonationCreatedOrUpdated(); // Call the callback to refresh the donation list
     } catch (err) {
       setError('Error updating donation');
     }
