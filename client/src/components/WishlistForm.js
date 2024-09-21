@@ -1,7 +1,7 @@
 import axiosInstance from '../axiosConfig';
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import styles from './Wishlist.module.css';
+import commonStyles from './CommonStyles.module.css'; // Import the common CSS module
 
 function WishlistForm({ onWishCreated }) {
   const [wishData, setWishData] = useState({
@@ -43,9 +43,9 @@ function WishlistForm({ onWishCreated }) {
   };
 
   return (
-    <div className={styles.container}>
+    <div className={commonStyles.container}>
       <h2>🎉 Create a Wish 🎉</h2>
-      <form onSubmit={handleCreateWish} className={styles.form}>
+      <form onSubmit={handleCreateWish} className={commonStyles.form}>
         <input
           type="text"
           name="title"
@@ -53,19 +53,19 @@ function WishlistForm({ onWishCreated }) {
           value={wishData.title}
           onChange={handleChange}
           required
-          className={styles.input}
+          className={commonStyles.input}
         />
         <textarea
           name="description"
           placeholder="Wish Description 🌟"
           value={wishData.description}
           onChange={handleChange}
-          className={styles.textarea}
+          className={commonStyles.textarea}
         />
-        <button type="submit" className={styles.button}>Create Wish 🎁</button>
+        <button type="submit" className={commonStyles.button}>Create Wish 🎁</button>
       </form>
-      {message && <p className={styles.success}>{message}</p>}
-      {error && <p className={styles.error}>{error}</p>}
+      {message && <p className={commonStyles.success}>{message}</p>}
+      {error && <p className={commonStyles.error}>{error}</p>}
     </div>
   );
 }

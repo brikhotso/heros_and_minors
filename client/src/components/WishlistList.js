@@ -2,7 +2,7 @@
 import axiosInstance from '../axiosConfig';
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import styles from './Wishlist.module.css';
+import styles from './CommonStyles.module.css';
 import Modal from './Modal';
 import WishlistForm from './WishlistForm';
 
@@ -141,7 +141,7 @@ function WishlistList() {
   };
 
   return (
-    <div className={styles.container}>
+    <div className={commonStyles.container}>
       <h2>🌈 Your Wishlist 🌈</h2>
       <button onClick={() => {
         if (!token) {
@@ -149,10 +149,10 @@ function WishlistList() {
         } else {
           setIsModalOpen(true);
         }
-      }} className={styles.createButton}>Create Wish 🎁</button>
-      <ul className={styles.wishlist}>
+      }} className={commonStyles.createButton}>Create Wish 🎁</button>
+      <ul>
         {wishlist.map((wish) => (
-          <li key={wish._id} className={styles.wishItem}>
+          <li key={wish._id} className={commonStyles.listItem}>
             <strong>{wish.title} 🎈</strong> - {wish.description} (Posted by: {wish.posted_by.name})
 
             {wish.status === 'pending' && (
@@ -176,8 +176,8 @@ function WishlistList() {
           </li>
         ))}
       </ul>
-      {message && <p className={styles.success}>{message}</p>}
-      {error && <p className={styles.error}>{error}</p>}
+      {message && <p className={commonStyles.success}>{message}</p>}
+      {error && <p className={commonStyles.error}>{error}</p>}
       <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
         <WishlistForm onWishCreated={handleWishCreated} />
       </Modal>

@@ -4,7 +4,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Modal from './Modal';
 import DonationForm from './DonationForm';
-import styles from './Donations.module.css';
+import styles from './CommonStyles.module.css';
 
 function DonationList() {
   const [donations, setDonations] = useState([]);
@@ -166,7 +166,7 @@ function DonationList() {
   };
 
   return (
-    <div className={styles.container}>
+    <div className={commonStyles.container}>
       <h2>📝 Donations List</h2>
       <button onClick={() => {
         if (!token) {
@@ -174,10 +174,10 @@ function DonationList() {
         } else {
           setIsModalOpen(true);
         }
-      }} className={styles.createButton}>Create Donation 🎁</button>
+      }} className={commonStyles.createButton}>Create Donation 🎁</button>
       <ul>
         {donations.map((donation) => (
-          <li key={donation._id}>
+          <li key={donation._id} className={commonStyles.listItem}>
             <strong>{donation.title} 🎈</strong> - {donation.description} (Posted by: {donation.donor.name})
             <p>Type: {donation.type}</p>
             <p>Condition: {donation.condition}</p>
@@ -192,7 +192,7 @@ function DonationList() {
                 <button onClick={() => fetchRequests(donation._id)}>View Requests 👀</button>
                 {requestsByDonation[donation._id] && requestsByDonation[donation._id].length > 0 && (
                   requestsByDonation[donation._id].map((request) => (
-                    <div key={request._id} className="request-card">
+                    <div key={request._id} className={commonStyles.requestCard}>
                       <p><strong>Message:</strong> {request.message}</p>
                       <p><strong>Location:</strong> {request.location}</p>
                       <p><strong>Contact Info:</strong> {request.contactInfo}</p>
@@ -223,8 +223,8 @@ function DonationList() {
           </li>
         ))}
       </ul>
-      {message && <p className="success">{message}</p>}
-      {error && <p className="error">{error}</p>}
+      {message && <p className={commonStyles.success}>{message}</p>}
+      {error && <p className={commonStyles.error}>{error}</p>}
       <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
         <DonationForm onDonationCreatedOrUpdated={handleDonationCreatedOrUpdated} />
       </Modal>
