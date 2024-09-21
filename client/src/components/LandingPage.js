@@ -19,7 +19,7 @@ const LandingPage = () => {
       <header className="landing-header">
         <div className="logo">Heros & Minors</div>
 	  <Link to="/">
-            <img src="/images/long.png" alt="Heroes & Minors Logo" />
+            <img src="https://i.imgur.com/4MZUXRO.png" alt="Heroes & Minors Logo" />
           </Link>  
         <nav>
           <ul>
