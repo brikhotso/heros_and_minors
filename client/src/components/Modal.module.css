@@ -18,14 +18,16 @@
   border-radius: 5px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   position: relative;
+  max-height: 80vh; /* Set maximum height */
+  overflow-y: auto; /* Enable scrolling if content overflows */
 }
 
 .closeButton {
   position: absolute;
   top: 10px;
-  right: 10px;
+  right: 20px;
   background: none;
   border: none;
-  font-size: 15px;
+  font-size: 20px;
   cursor: pointer;
 }
