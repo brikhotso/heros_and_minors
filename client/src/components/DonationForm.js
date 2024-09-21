@@ -1,3 +1,4 @@
+// DonationForm.js
 import axiosInstance from '../axiosConfig';
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
@@ -76,6 +77,7 @@ function DonationForm({ onDonationCreatedOrUpdated }) {
         headers: { Authorization: `Bearer ${token}` },
       });
       setMessage('Donation updated successfully!');
+      setError(null);
       setIsEditing(false);
 
       onDonationCreatedOrUpdated(); // Call the callback to refresh the donation list

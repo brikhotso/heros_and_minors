@@ -1,3 +1,4 @@
+// DonationList.js
 import axiosInstance from '../axiosConfig';
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -159,9 +160,9 @@ function DonationList() {
     }
   };
 
-  const handleCloseModal = () => {
-    setIsModalOpen(false);
-    fetchDonations(); // Refresh donation list
+  const handleDonationCreatedOrUpdated = () => {
+    fetchDonations();
+    setIsModalOpen(false); // Close the modal after creating or updating a donation
   };
 
   return (
@@ -225,7 +226,7 @@ function DonationList() {
       {message && <p className="success">{message}</p>}
       {error && <p className="error">{error}</p>}
       <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
-        <DonationForm />
+        <DonationForm onDonationCreatedOrUpdated={handleDonationCreatedOrUpdated} />
       </Modal>
     </div>
   );
