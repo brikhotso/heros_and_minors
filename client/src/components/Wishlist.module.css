@@ -1,5 +1,72 @@
-/* Wishlist.module.css */
+/* General button styling */
+button {
+  margin: 5px;
+  padding: 5px 12px; /* Reduce padding for smaller button size */
+  border: none;
+  border-radius: 5px; /* Slightly rounded corners */
+  background-color: #4CAF50; /* Soft green background */
+  color: white; /* White text */
+  font-size: 14px; /* Adjust font size */
+  cursor: pointer;
+  display: inline-block; /* Ensures buttons sit next to each other */
+  transition: background-color 0.3s ease, transform 0.2s ease; /* Smooth transition */
+}
 
+button:hover {
+  background-color: #45a049; /* Darken on hover */
+}
+
+button:active {
+  transform: scale(0.95); /* Slight press effect */
+}
+
+/* Specific button for Create Wish */
+.createButton {
+  background-color: #ff6f61; /* Light red for create wish */
+}
+
+.createButton:hover {
+  background-color: #e65b50; /* Darken red on hover */
+}
+
+/* Success message styling */
+.success {
+  color: #28a745; /* Green color for success */
+  background-color: #d4edda; /* Light green background */
+  border: 1px solid #c3e6cb;
+  padding: 10px;
+  border-radius: 5px;
+  margin-top: 10px;
+  text-align: center;
+}
+
+/* Error message styling */
+.error {
+  color: white;
+  background-color: #f44336; /* Bright red for error */
+  padding: 10px;
+  border-radius: 5px;
+  text-align: center;
+  font-size: 14px;
+  margin-top: 10px;
+  border: 1px solid #d32f2f; /* Darker red border */
+  box-shadow: 0 2px 4px rgba(255, 0, 0, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Wishlist item styling */
+.wishItem {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  margin: 10px 0;
+  padding: 15px; /* More padding for better spacing */
+  border-radius: 10px; /* Soft rounded corners */
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Container styling */
 .container {
   font-family: Arial, sans-serif;
   background-color: #f0f8ff;
@@ -7,126 +74,4 @@
   padding: 20px;
   border-radius: 5px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-h2 {
-  text-align: center;
-  color: #333;
-}
-
-.wishlist {
-  list-style-type: none;
-  padding: 0;
-}
-
-.wishItem {
-  background-color: #fff;
-  border: 1px solid #ddd;
-  margin: 10px 0;
-  padding: 10px;
-  border-radius: 5px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-/* Button styling */
-button {
-  margin: 5px;
-  padding: 8px 12px;
-  border: none;
-  border-radius: 20px; /* For a cute, rounded look */
-  cursor: pointer;
-  width: auto; 
-  display: inline-flex; /* Keeps buttons inline */
-  align-items: center;
-  justify-content: center;
-  background-color: #4CAF50; /* Feel free to change the color */
-  color: white;
-  font-size: 14px;
-}
-
-button:hover {
-  opacity: 0.9;
-}
-
-button:active {
-  transform: scale(0.95);
-}
-
-/* To keep buttons from stacking vertically */
-.button-container {
-  display: flex;
-  justify-content: space-around; /* Space them out */
-  flex-wrap: wrap; /* If too many buttons, they'll wrap neatly */
-}
-
-.input, .textarea {
-  width: 100%;
-  padding: 10px;
-  margin: 10px 0;
-  border: 1px solid #ddd;
-  border-radius: 5px;
-}
-
-.input:focus, .textarea:focus {
-  border-color: #333;
-}
-
-.form {
-  max-width: 500px;
-  margin: 0 auto;
-  background-color: #fff;
-  padding: 20px;
-  border-radius: 5px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-/* Error message styling */
-.error {
-  color: white; 
-  background-color: #ff4d4d; /* Bright red background for error */
-  padding: 10px;
-  border-radius: 5px;
-  text-align: center;
-  font-size: 14px;
-  margin-top: 10px;
-  border: 1px solid #ff3333; /* Darker red border */
-  box-shadow: 0 2px 4px rgba(255, 0, 0, 0.2);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative; /* For icon positioning */
-  transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
-}
-
-/* Optional icon styling */
-.error::before {
-  content: "⚠️"; /* Add an emoji icon or use an SVG */
-  margin-right: 10px;
-  font-size: 18px;
-}
-
-/* Animation for showing error */
-.error.show {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-.error.hide {
-  opacity: 0;
-  transform: translateY(-10px);
-}
-
-.error-animate {
-  animation: slideDown 0.5s ease forwards;
-}
-
-@keyframes slideDown {
-  from {
-    opacity: 0;
-    transform: translateY(-10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
 }
