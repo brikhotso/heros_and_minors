@@ -144,7 +144,7 @@ function WishlistList() {
       <h2>🌈 Your Wishlist 🌈</h2>
       <button onClick={() => {
         if (!token) {
-          history.push('/login');
+          navigate.push('/login');
         } else {
           setIsModalOpen(true);
         }

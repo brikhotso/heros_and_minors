@@ -10,7 +10,7 @@ function WishlistForm({ onWishCreated }) {
   });
   const [message, setMessage] = useState(null);
   const [error, setError] = useState(null);
-  const history = useHistory();
+  const navigate = useNavigate();
 
   const token = localStorage.getItem('token');
 
