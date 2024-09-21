@@ -21,7 +21,7 @@ function WishlistForm({ onWishCreated }) {
   const handleCreateWish = async (e) => {
     e.preventDefault();
     if (!token) {
-      navigate.push('/login');
+      navigate('/login');
       return;
     }
     try {

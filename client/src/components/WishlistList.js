@@ -1,3 +1,4 @@
+// WishlistList.js
 import axiosInstance from '../axiosConfig';
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -52,7 +53,7 @@ function WishlistList() {
 
   const handleUpdateWish = async (wishId) => {
     if (!token) {
-      navigate.push('/login');
+      navigate('/login');
       return;
     }
     const updatedTitle = prompt('Enter new title:');
@@ -76,7 +77,7 @@ function WishlistList() {
 
   const handleDeleteWish = async (wishId) => {
     if (!token) {
-      navigate.push('/login');
+      navigate('/login');
       return;
     }
     if (window.confirm('Are you sure you want to delete this wish?')) {
@@ -96,7 +97,7 @@ function WishlistList() {
 
   const handleGrantWish = async (wishId) => {
     if (!token) {
-      navigate.push('/login');
+      navigate('/login');
       return;
     }
     try {
@@ -116,7 +117,7 @@ function WishlistList() {
 
   const handleFulfillWish = async (wishId) => {
     if (!token) {
-      navigate.push('/login');
+      navigate('/login');
       return;
     }
     try {
@@ -144,7 +145,7 @@ function WishlistList() {
       <h2>🌈 Your Wishlist 🌈</h2>
       <button onClick={() => {
         if (!token) {
-          navigate.push('/login');
+          navigate('/login');
         } else {
           setIsModalOpen(true);
         }
