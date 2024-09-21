@@ -5,29 +5,36 @@ import styles from './Dashboard.module.css';
 import { FaHome, FaPuzzlePiece, FaSearch, FaGift } from 'react-icons/fa'; // Add fun icons
 
 function Dashboard() {
-  const [isLoggedIn, setIsLoggedIn] = useState(true);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [userName, setUserName] = useState('');
   const [error, setError] = useState(null);
   const token = localStorage.getItem('token');
+  const offline = localStorage.getItem('offline');
   const navigate = useNavigate();
 
   useEffect(() => {
-    const fetchCurrentUser = async () => {
-      try {
-        const response = await axiosInstance.get('/api/auth/me', {
-          headers: { Authorization: `Bearer ${token}` },
-        });
-        setUserName(response.data.name);
-      } catch (err) {
-        setError('Error fetching current user');
-      }
-    };
+    if (token) {
+      const fetchCurrentUser = async () => {
+        try {
+          const response = await axiosInstance.get('/api/auth/me', {
+            headers: { Authorization: `Bearer ${token}` },
+          });
+          setUserName(response.data.name);
+          setIsLoggedIn(true);
+        } catch (err) {
+          setError('Error fetching current user');
+        }
+      };
 
-    fetchCurrentUser();
-  }, [token]);
+      fetchCurrentUser();
+    } else if (offline) {
+      setIsLoggedIn(false);
+    }
+  }, [token, offline]);
 
   const handleLogout = () => {
     localStorage.removeItem('token');
+    localStorage.removeItem('offline');
     setIsLoggedIn(false);
     navigate('/'); // Redirect to home page
   };
@@ -41,7 +48,7 @@ function Dashboard() {
         <div className={styles.auth}>
           {isLoggedIn ? (
             <div className={styles.userInfo}>
-              <span role="img" aria-label="waving hand">👋</span> Welcome, {userName}   !
+              <span role="img" aria-label="waving hand">👋</span> Welcome, {userName}!
               <button onClick={handleLogout} className={styles.logoutBtn}>Logout</button>
             </div>
           ) : (
