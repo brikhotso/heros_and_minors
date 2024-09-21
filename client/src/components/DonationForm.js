@@ -74,6 +74,7 @@ function DonationForm({ onDonationCreatedOrUpdated }) {
     }
     try {
       setError(null)
+      setMessage(null)
       await axiosInstance.put(`/api/donations/${editDonationId}`, donationData, {
         headers: { Authorization: `Bearer ${token}` },
       });
