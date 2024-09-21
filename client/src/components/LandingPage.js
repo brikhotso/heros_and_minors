@@ -1,9 +1,13 @@
 import React, { useState } from 'react';
 import './LandingPage.css'; // Isolated styles for the landing page
 import { Link } from 'react-router-dom';
+import Modal from './Modal';
+import LoginForm from './LoginForm';
+import RegisterForm from './RegisterForm';
 
 const LandingPage = () => {
   const [showModal, setShowModal] = useState(false);
+  const [modalContent, setModalContent] = useState(null);
 
   const handleGetStartedClick = () => {
     setShowModal(true); // Show modal when "Get Started" is clicked
@@ -11,6 +15,17 @@ const LandingPage = () => {
 
   const handleCloseModal = () => {
     setShowModal(false); // Close modal when "X" or background is clicked
+    setModalContent(null); // Clear modal content
+  };
+
+  const handleLoginClick = () => {
+    setModalContent(<LoginForm onClose={handleCloseModal} />);
+    setShowModal(true);
+  };
+
+  const handleRegisterClick = () => {
+    setModalContent(<RegisterForm onClose={handleCloseModal} />);
+    setShowModal(true);
   };
 
   return (
@@ -44,17 +59,16 @@ const LandingPage = () => {
 
       {/* Pop-up Modal for Get Started */}
       {showModal && (
-        <div className="modal-overlay" onClick={handleCloseModal}>
-          <div className="modal-content" onClick={(e) => e.stopPropagation()}>
-            <span className="close-modal" onClick={handleCloseModal}>&times;</span>
-            <h2>Choose an Option</h2>
+        <Modal isOpen={showModal} onClose={handleCloseModal}>
+          {modalContent || (
             <div className="modal-options">
-              <a href="/login" className="option-button">Login</a>
-              <a href="/register" className="option-button">Sign Up</a>
-              <a href="/dashboard" className="option-button" >Continue Offline</a>
+	      <h2>Choose an Option</h2>
+	      <button className="option-button" onClick={handleLoginClick}>Login</button>
+              <button className="option-button" onClick={handleRegisterClick}>Sign Up</button>
+              <Link to="/dashboard" className="option-button">Continue Offline</Link>
             </div>
-          </div>
-        </div>
+          )}
+        </Modal>
       )}
 
       {/* About Section */}
