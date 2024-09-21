@@ -43,7 +43,9 @@ function Dashboard() {
     <div className={styles.dashboard}>
       <header className={styles.header}>
         <div className={styles.logo}>
-          <h1>Heroes & Minors</h1>
+          <Link to="/">
+            <img src="https://i.imgur.com/4MZUXRO.png" alt="Heroes & Minors Logo" />
+          </Link>
         </div>
         <div className={styles.auth}>
           {isLoggedIn ? (
