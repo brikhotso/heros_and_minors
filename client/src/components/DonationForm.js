@@ -73,16 +73,16 @@ function DonationForm({ onDonationCreatedOrUpdated }) {
       return;
     }
     try {
+      setError(null)
       await axiosInstance.put(`/api/donations/${editDonationId}`, donationData, {
         headers: { Authorization: `Bearer ${token}` },
       });
       setMessage('Donation updated successfully!');
-      setError(null);
       setIsEditing(false);
-
       onDonationCreatedOrUpdated(); // Call the callback to refresh the donation list
     } catch (err) {
-      setError('Error updating donation');
+        setMessage(null);
+	setError('Error updating donation');
     }
   };
 
