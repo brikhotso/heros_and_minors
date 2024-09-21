@@ -16,7 +16,11 @@
 }
 
 .landing-header .logo img {
- height: 50px;
+ height: 20px;
+}
+
+.landing-header .logo {
+  margin-right: auto; /* Push the logo to the left */
 }
 
 .landing-header nav ul {
@@ -183,10 +187,11 @@
   margin-bottom: 20px;
   color: #cc0055;
 }
+
 /* Features Section */
 .features-section {
   padding: 50px 20px;
-  background-color: rgba(0, 0, 0, 0.7);
+  background-color: rgba(0, 0, 0, 0.5);
 }
 
 .Feature-section h2 {

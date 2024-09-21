@@ -17,10 +17,11 @@ const LandingPage = () => {
     <div className="landing-container">
       {/* Header */}
       <header className="landing-header">
-        <div className="logo">Heros & Minors</div>
+        <div className="logo">
 	  <Link to="/">
             <img src="https://i.imgur.com/4MZUXRO.png" alt="Heroes & Minors Logo" />
-          </Link>  
+          </Link>
+	</div>
         <nav>
           <ul>
             <li><a href="#about">About</a></li>
@@ -61,7 +62,7 @@ const LandingPage = () => {
         <h2>Welcome to Heros & Minors</h2>
         <p>
           As a mom and developer, I have always sought ways to combine my passions for family, kindness, and innovation. 
-          Heros & Minors was born from a heartfelt desire to make a difference in children's lives.
+          Heros & Minors was born from a heartfelt desire to make a difference in childrens lives.
         </p>
         <h3>My Story</h3>
         <p>
@@ -71,7 +72,7 @@ const LandingPage = () => {
         <h3>Meet the Founder</h3>
         <div className="team-section">
           <img src="/images/brenda.jpg" alt="Brenda Mabitsela" className="team-photo" />
-          <p>Hi, I am Brenda, the founder of Heros & Minors. Driven by my love for family, kindness, and community, I built this platform with my son's help to make a difference in kids' lives.</p>
+          <p>Hi, I am Brenda, the founder of Heros & Minors. Driven by my love for family, kindness, and community, I built this platform with the help of my son to make a difference in kids lives.</p>
         </div>
       </section>
 
@@ -97,7 +98,7 @@ const LandingPage = () => {
           <div className="feature-item">
             <img src="/images/donation-platform.jpg" alt="Donation Platform" className="feature-image" />
             <h3><a href="/dashboard/donationlist" >Heros Platform</a></h3>
-            <p>Donate gently used items or services to make a tangible difference in children's lives.</p>
+            <p>Donate gently used items or services to make a tangible difference in childrens lives.</p>
           </div>
         </div>
       </section>
