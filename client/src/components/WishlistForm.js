@@ -1,6 +1,6 @@
 import axiosInstance from '../axiosConfig';
 import React, { useState } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import styles from './Wishlist.module.css';
 
 function WishlistForm({ onWishCreated }) {
@@ -21,7 +21,7 @@ function WishlistForm({ onWishCreated }) {
   const handleCreateWish = async (e) => {
     e.preventDefault();
     if (!token) {
-      history.push('/login');
+      navigate.push('/login');
       return;
     }
     try {

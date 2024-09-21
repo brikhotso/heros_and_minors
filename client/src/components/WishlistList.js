@@ -1,6 +1,6 @@
 import axiosInstance from '../axiosConfig';
 import React, { useState, useEffect } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import styles from './Wishlist.module.css';
 import Modal from './Modal';
 import WishlistForm from './WishlistForm';
@@ -11,7 +11,7 @@ function WishlistList() {
   const [error, setError] = useState(null);
   const [currentUserId, setCurrentUserId] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const history = useHistory();
+  const navigate = useNavigate();
 
   const token = localStorage.getItem('token');
 
@@ -52,7 +52,7 @@ function WishlistList() {
 
   const handleUpdateWish = async (wishId) => {
     if (!token) {
-      history.push('/login');
+      navigate.push('/login');
       return;
     }
     const updatedTitle = prompt('Enter new title:');
@@ -76,7 +76,7 @@ function WishlistList() {
 
   const handleDeleteWish = async (wishId) => {
     if (!token) {
-      history.push('/login');
+      navigate.push('/login');
       return;
     }
     if (window.confirm('Are you sure you want to delete this wish?')) {
@@ -96,7 +96,7 @@ function WishlistList() {
 
   const handleGrantWish = async (wishId) => {
     if (!token) {
-      history.push('/login');
+      navigate.push('/login');
       return;
     }
     try {
@@ -116,7 +116,7 @@ function WishlistList() {
 
   const handleFulfillWish = async (wishId) => {
     if (!token) {
-      history.push('/login');
+      navigate.push('/login');
       return;
     }
     try {
