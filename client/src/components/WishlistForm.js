@@ -1,14 +1,16 @@
 import axiosInstance from '../axiosConfig';
 import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import styles from './Wishlist.module.css';
 
-function WishlistForm() {
+function WishlistForm({ onWishCreated }) {
   const [wishData, setWishData] = useState({
     title: '',
     description: '',
   });
   const [message, setMessage] = useState(null);
   const [error, setError] = useState(null);
+  const history = useHistory();
 
   const token = localStorage.getItem('token');
 
@@ -18,6 +20,10 @@ function WishlistForm() {
 
   const handleCreateWish = async (e) => {
     e.preventDefault();
+    if (!token) {
+      history.push('/login');
+      return;
+    }
     try {
       await axiosInstance.post('/api/wishes', wishData, {
         headers: { Authorization: `Bearer ${token}` },
@@ -28,6 +34,7 @@ function WishlistForm() {
         title: '',
         description: '',
       });
+      onWishCreated(); // Call the callback to refresh the wishlist
     } catch (err) {
       setError('Error creating wish');
       setMessage(null); // Clear previous success messages

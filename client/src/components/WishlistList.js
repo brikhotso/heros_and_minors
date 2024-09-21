@@ -1,5 +1,6 @@
 import axiosInstance from '../axiosConfig';
 import React, { useState, useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
 import styles from './Wishlist.module.css';
 import Modal from './Modal';
 import WishlistForm from './WishlistForm';
@@ -10,6 +11,7 @@ function WishlistList() {
   const [error, setError] = useState(null);
   const [currentUserId, setCurrentUserId] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const history = useHistory();
 
   const token = localStorage.getItem('token');
 
@@ -24,6 +26,7 @@ function WishlistList() {
   }, [currentUserId]);
 
   const fetchCurrentUser = async () => {
+    if (!token) return;
     try {
       const response = await axiosInstance.get('/api/auth/me', {
         headers: { Authorization: `Bearer ${token}` },
@@ -48,6 +51,10 @@ function WishlistList() {
   };
 
   const handleUpdateWish = async (wishId) => {
+    if (!token) {
+      history.push('/login');
+      return;
+    }
     const updatedTitle = prompt('Enter new title:');
     const updatedDescription = prompt('Enter new description:');
     if (updatedTitle || updatedDescription) {
@@ -68,6 +75,10 @@ function WishlistList() {
   };
 
   const handleDeleteWish = async (wishId) => {
+    if (!token) {
+      history.push('/login');
+      return;
+    }
     if (window.confirm('Are you sure you want to delete this wish?')) {
       try {
         await axiosInstance.delete(`/api/wishes/${wishId}`, {
@@ -84,6 +95,10 @@ function WishlistList() {
   };
 
   const handleGrantWish = async (wishId) => {
+    if (!token) {
+      history.push('/login');
+      return;
+    }
     try {
       await axiosInstance.post(
         `/api/wishes/${wishId}/grant`,
@@ -100,6 +115,10 @@ function WishlistList() {
   };
 
   const handleFulfillWish = async (wishId) => {
+    if (!token) {
+      history.push('/login');
+      return;
+    }
     try {
       await axiosInstance.put(
         `/api/wishes/${wishId}/fulfill`,
@@ -115,10 +134,21 @@ function WishlistList() {
     }
   };
 
+  const handleWishCreated = () => {
+    fetchWishlist();
+    setIsModalOpen(false); // Close the modal after creating a wish
+  };
+
   return (
     <div className={styles.container}>
       <h2>🌈 Your Wishlist 🌈</h2>
-      <button onClick={() => setIsModalOpen(true)} className={styles.createButton}>Create Wish 🎁</button>
+      <button onClick={() => {
+        if (!token) {
+          history.push('/login');
+        } else {
+          setIsModalOpen(true);
+        }
+      }} className={styles.createButton}>Create Wish 🎁</button>
       <ul className={styles.wishlist}>
         {wishlist.map((wish) => (
           <li key={wish._id} className={styles.wishItem}>
@@ -148,7 +178,7 @@ function WishlistList() {
       {message && <p className={styles.success}>{message}</p>}
       {error && <p className={styles.error}>{error}</p>}
       <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
-        <WishlistForm />
+        <WishlistForm onWishCreated={handleWishCreated} />
       </Modal>
     </div>
   );
