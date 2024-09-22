@@ -47,46 +47,35 @@
 
 /* Desktops */
 @media (min-width: 901px) {
-  .modalOverlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: rgba(0, 0, 0, 0.4);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
+    .modalOverlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: rgba(0, 0, 0, 0.5);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
 
-  .modalContent {
-    background-color: #fff;
-    padding: 30px;
-    border-radius: 12px; /* More rounded corners for a modern look */
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2); /* Stronger shadow for desktop */
-    width: 50%; /* Keep the modal width manageable on larger screens */
-    max-height: 80vh;
-    overflow-y: auto;
-    position: relative;
-    transition: transform 0.3s ease; /* Smooth appearance */
-  }
+    .modalContent {
+      background-color: silver;
+      padding: 30px;
+      border-radius: 5px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      position: relative;
+      max-height: 80vh; /* Set maximum height */
+      overflow-y: auto; /* Enable scrolling if content overflows */
+    }
 
-  .modalContent:hover {
-    transform: scale(1.02); /* Subtle hover effect */
-  }
-
-  .closeButton {
-    position: absolute;
-    top: 10px;
-    right: 20px;
-    font-size: 20px;
-    background: none;
-    border: none;
-    cursor: pointer;
-    transition: transform 0.2s ease;
-  }
-
-  .closeButton:hover {
-    transform: scale(1.2); /* Slight zoom on hover */
-  }
+    .closeButton {
+        position: absolute;
+        top: 10px;
+        right: 20px;
+        background: none;
+        border: none;
+        font-size: 20px;
+        cursor: pointer;
+    }
 }
