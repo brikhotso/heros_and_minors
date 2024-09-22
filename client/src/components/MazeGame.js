@@ -11,7 +11,7 @@ const MazeGame = () => {
     const [showModal, setShowModal] = useState(false);
     const [modalMessage, setModalMessage] = useState('');
     const [imagesLoaded, setImagesLoaded] = useState(false);
-    const canvasRef = useRef(null);
+    const [touchStart, setTouchStart] = useState(null);
 
     // Define maze configurations for different difficulty levels
     const mazeConfigs = {
