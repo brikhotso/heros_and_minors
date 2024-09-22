@@ -269,12 +269,14 @@ const MazeGame = () => {
 
     // Touch event handlers
     const handleTouchStart = useCallback((event) => {
-        const touch = event.touches[0];
+	event.preventDefault();
+	const touch = event.touches[0];
         setTouchStart({ x: touch.clientX, y: touch.clientY });
     }, []);
 
     const handleTouchMove = useCallback((event) => {
-        if (!touchStart) return;
+	event.preventDefault();
+	if (!touchStart) return;
 
         const touch = event.touches[0];
         const deltaX = touch.clientX - touchStart.x;
@@ -299,7 +301,8 @@ const MazeGame = () => {
         setTouchStart(null);
     }, [touchStart, handleKeyDown]);
 
-    const handleTouchEnd = useCallback(() => {
+    const handleTouchEnd = useCallback((event) => {
+	event.preventDefault();
         setTouchStart(null);
     }, []);
 
