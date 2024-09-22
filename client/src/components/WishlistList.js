@@ -155,22 +155,24 @@ function WishlistList() {
           <li key={wish._id} className={commonStyles.listItem}>
             <strong>{wish.title} 🎈</strong> - {wish.description} (Posted by: {wish.posted_by.name})
 
-            {wish.status === 'pending' && (
-              <>
-                {wish.posted_by._id.toString() === currentUserId ? (
-                  <>
-                    <button onClick={() => handleUpdateWish(wish._id)}>✏️ Edit</button>
-                    <button onClick={() => handleDeleteWish(wish._id)}>❌ Delete</button>
-                  </>
-                ) : (
-                  <button onClick={() => handleGrantWish(wish._id)}>🌟 Grant</button>
-                )}
-              </>
-            )}
+            <div className={commonStyles.buttonContainer}>
+              {wish.status === 'pending' && (
+                <>
+                  {wish.posted_by._id.toString() === currentUserId ? (
+                    <>
+                      <button onClick={() => handleUpdateWish(wish._id)}>✏️ Edit</button>
+                      <button onClick={() => handleDeleteWish(wish._id)}>❌ Delete</button>
+                    </>
+                  ) : (
+                    <button onClick={() => handleGrantWish(wish._id)}>🌟 Grant</button>
+                  )}
+                </>
+              )}
 
-            {wish.status === 'granted' && wish.posted_by._id.toString() === currentUserId && (
-              <button onClick={() => handleFulfillWish(wish._id)}>✅ Mark as Fulfilled</button>
-            )}
+              {wish.status === 'granted' && wish.posted_by._id.toString() === currentUserId && (
+                <button onClick={() => handleFulfillWish(wish._id)}>✅ Mark as Fulfilled</button>
+              )}
+            </div>
 
             <p>Status: {wish.status}</p>
           </li>

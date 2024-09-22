@@ -183,43 +183,45 @@ function DonationList() {
             <p>Condition: {donation.condition}</p>
             <p>Status: {donation.status}</p>
 
-            {donation.status === 'available' && currentUser && currentUser._id !== donation.donor._id && (
-              <button onClick={() => handleRequestDonation(donation._id)}>Request Donation 🎁</button>
-            )}
-
-            {donation.status === 'requested' && currentUser && currentUser._id === donation.donor._id && (
-              <>
-                <button onClick={() => fetchRequests(donation._id)}>View Requests 👀</button>
-                {requestsByDonation[donation._id] && requestsByDonation[donation._id].length > 0 && (
-                  requestsByDonation[donation._id].map((request) => (
-                    <div key={request._id} className={commonStyles.requestCard}>
-                      <p><strong>Message:</strong> {request.message}</p>
-                      <p><strong>Location:</strong> {request.location}</p>
-                      <p><strong>Contact Info:</strong> {request.contactInfo}</p>
-                      <button onClick={() => handleAcceptRequest(donation._id, request._id)}>
-                        Accept Request from {request.interested_user.name} 🎉
-                      </button>
-                    </div>
-                  ))
-                )}
-              </>
-            )}
-
-            {donation.status === 'accepted' &&
-              requestsByDonation[donation._id] &&
-              requestsByDonation[donation._id].some(request =>
-                request.status === 'accepted' &&
-                request.interested_user._id === currentUser._id
-              ) && (
-                <button onClick={() => handleMarkReceived(donation._id)}>Mark as Received ✅</button>
+            <div className={commonStyles.buttonContainer}>
+              {donation.status === 'available' && currentUser && currentUser._id !== donation.donor._id && (
+                <button onClick={() => handleRequestDonation(donation._id)}>Request Donation 🎁</button>
               )}
 
-            {currentUser && currentUser._id === donation.donor._id && (
-              <>
-                <button onClick={() => handleEditDonation(donation)}>✏️ Edit Donation</button>
-                <button onClick={() => handleDeleteDonation(donation._id)}>❌ Delete Donation</button>
-              </>
-            )}
+              {donation.status === 'requested' && currentUser && currentUser._id === donation.donor._id && (
+                <>
+                  <button onClick={() => fetchRequests(donation._id)}>View Requests 👀</button>
+                  {requestsByDonation[donation._id] && requestsByDonation[donation._id].length > 0 && (
+                    requestsByDonation[donation._id].map((request) => (
+                      <div key={request._id} className={commonStyles.requestCard}>
+                        <p><strong>Message:</strong> {request.message}</p>
+                        <p><strong>Location:</strong> {request.location}</p>
+                        <p><strong>Contact Info:</strong> {request.contactInfo}</p>
+                        <button onClick={() => handleAcceptRequest(donation._id, request._id)}>
+                          Accept Request from {request.interested_user.name} 🎉
+                        </button>
+                      </div>
+                    ))
+                  )}
+                </>
+              )}
+
+              {donation.status === 'accepted' &&
+                requestsByDonation[donation._id] &&
+                requestsByDonation[donation._id].some(request =>
+                  request.status === 'accepted' &&
+                  request.interested_user._id === currentUser._id
+                ) && (
+                  <button onClick={() => handleMarkReceived(donation._id)}>Mark as Received ✅</button>
+                )}
+
+              {currentUser && currentUser._id === donation.donor._id && (
+                <>
+                  <button onClick={() => handleEditDonation(donation)}>✏️ Edit Donation</button>
+                  <button onClick={() => handleDeleteDonation(donation._id)}>❌ Delete Donation</button>
+                </>
+              )}
+            </div>
           </li>
         ))}
       </ul>

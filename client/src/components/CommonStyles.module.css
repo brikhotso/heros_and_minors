@@ -55,6 +55,13 @@ ul {
   gap: 10px;
 }
 
+/* Flex container for buttons */
+.buttonContainer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
 /* Success message styling */
 .success {
   color: #42b983;
