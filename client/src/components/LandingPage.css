@@ -7,112 +7,79 @@
   .landing-header {
     flex-direction: column;
     align-items: center;
+    padding: 10px 0; /* Add padding to prevent overlap */
   }
 
   .landing-header .logo img {
-    height: 30px;
+    height: 25px; /* Reduce logo size */
   }
 
   .landing-header nav ul {
     flex-direction: column;
     align-items: center;
+    padding: 0;
   }
 
   .landing-header nav ul li {
-    margin: 10px 0;
-  }
-
-  .hero-section {
-    padding: 50px 10px;
+    margin: 5px 0; /* Reduce space between nav items */
   }
 
   .hero-section h1 {
-    font-size: 32px;
+    font-size: 28px; /* Reduce font size for h1 */
   }
 
   .hero-section p {
-    font-size: 18px;
+    font-size: 16px; /* Reduce font size for paragraph */
   }
 
   .hero-buttons .get-started, .hero-buttons .learn-more {
-    padding: 15px 30px;
-    font-size: 18px;
-    margin: 10px;
+    padding: 10px 20px; /* Reduce button padding */
+    font-size: 14px; /* Reduce button text size */
+    margin: 5px;
   }
 
-  .about-section {
-    padding: 40px 20px;
-  }
-
-  .about-section h2 {
-    font-size: 28px;
-  }
-
-  .about-section p {
-    font-size: 16px;
-  }
-
+  /* Meet the Founder Section */
   .team-section {
-    flex-direction: column;
-    align-items: center;
-    padding: 20px;
+    flex-direction: column; /* Stack items vertically */
+    text-align: center;
   }
 
   .team-photo {
-    width: 150px;
-    height: 150px;
-    margin: 0;
+    margin: 0 auto 20px auto; /* Center the image and add space below */
+    width: 120px; /* Reduce image size */
+    height: 120px;
   }
 
   .team-section p {
-    margin: 20px 0;
+    margin: 0; /* Remove margin for better alignment */
+    font-size: 14px; /* Reduce font size */
   }
 
   .team-section h2 {
-    font-size: 28px;
+    font-size: 22px; /* Reduce heading size */
   }
 
-  .features-section {
-    padding: 30px 10px;
-  }
-
-  .features-list {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .feature-item {
-    width: 100%;
-    margin-bottom: 20px;
-  }
-
-  .testimonials-section {
-    padding: 30px 10px;
-  }
-
-  .testimonials-section h2 {
-    font-size: 28px;
-  }
-
-  .testimonials-section p {
-    font-size: 16px;
-  }
-
-  .contact-section {
-    padding: 20px 10px;
-  }
-
+  /* Other sections */
+  .about-section h2,
+  .features-section h2,
+  .testimonials-section h2,
   .contact-section h2 {
-    font-size: 28px;
+    font-size: 22px; /* Reduce all major headings */
+  }
+
+  .about-section p,
+  .features-section p,
+  .testimonials-section p {
+    font-size: 14px; /* Reduce paragraph font size */
   }
 
   .social-icons img {
-    width: 40px;
-    height: 40px;
+    width: 30px; /* Reduce social icon size */
+    height: 30px;
   }
 
   .footer {
-    padding: 10px;
+    padding: 10px; /* Reduce footer padding */
   }
 }
 
