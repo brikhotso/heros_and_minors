@@ -166,7 +166,7 @@ function DonationList() {
   };
 
   return (
-    <div className={commonStyles.container}>
+    <div className={CommonStyles.container}>
       <h2>📝 Donations List</h2>
       <button onClick={() => {
         if (!token) {
@@ -174,16 +174,16 @@ function DonationList() {
         } else {
           setIsModalOpen(true);
         }
-      }} className={commonStyles.createButton}>Create Donation 🎁</button>
+      }} className={CommonStyles.createButton}>Create Donation 🎁</button>
       <ul>
         {donations.map((donation) => (
-          <li key={donation._id} className={commonStyles.listItem}>
+          <li key={donation._id} className={CommonStyles.listItem}>
             <strong>{donation.title} 🎈</strong> - {donation.description} (Posted by: {donation.donor.name})
             <p>Type: {donation.type}</p>
             <p>Condition: {donation.condition}</p>
             <p>Status: {donation.status}</p>
 
-            <div className={commonStyles.buttonContainer}>
+            <div className={CommonStyles.buttonContainer}>
               {donation.status === 'available' && currentUser && currentUser._id !== donation.donor._id && (
                 <button onClick={() => handleRequestDonation(donation._id)}>Request Donation 🎁</button>
               )}
@@ -225,8 +225,8 @@ function DonationList() {
           </li>
         ))}
       </ul>
-      {message && <p className={commonStyles.success}>{message}</p>}
-      {error && <p className={commonStyles.error}>{error}</p>}
+      {message && <p className={CommonStyles.success}>{message}</p>}
+      {error && <p className={CommonStyles.error}>{error}</p>}
       <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
         <DonationForm onDonationCreatedOrUpdated={handleDonationCreatedOrUpdated} />
       </Modal>
