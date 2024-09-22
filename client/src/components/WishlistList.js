@@ -141,7 +141,7 @@ function WishlistList() {
   };
 
   return (
-    <div className={commonStyles.container}>
+    <div className={CommonStyles.container}>
       <h2>🌈 Your Wishlist 🌈</h2>
       <button onClick={() => {
         if (!token) {
@@ -149,13 +149,13 @@ function WishlistList() {
         } else {
           setIsModalOpen(true);
         }
-      }} className={commonStyles.createButton}>Create Wish 🎁</button>
+      }} className={CommonStyles.createButton}>Create Wish 🎁</button>
       <ul>
         {wishlist.map((wish) => (
-          <li key={wish._id} className={commonStyles.listItem}>
+          <li key={wish._id} className={CommonStyles.listItem}>
             <strong>{wish.title} 🎈</strong> - {wish.description} (Posted by: {wish.posted_by.name})
 
-            <div className={commonStyles.buttonContainer}>
+            <div className={CommonStyles.buttonContainer}>
               {wish.status === 'pending' && (
                 <>
                   {wish.posted_by._id.toString() === currentUserId ? (
@@ -178,8 +178,8 @@ function WishlistList() {
           </li>
         ))}
       </ul>
-      {message && <p className={commonStyles.success}>{message}</p>}
-      {error && <p className={commonStyles.error}>{error}</p>}
+      {message && <p className={CommonStyles.success}>{message}</p>}
+      {error && <p className={CommonStyles.error}>{error}</p>}
       <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
         <WishlistForm onWishCreated={handleWishCreated} />
       </Modal>
