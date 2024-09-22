@@ -10,6 +10,7 @@ const MazeGame = () => {
     const [player, setPlayer] = useState({ x: 1, y: 1 });
     const [showModal, setShowModal] = useState(false);
     const [modalMessage, setModalMessage] = useState('');
+    const [imagesLoaded, setImagesLoaded] = useState;
 
 
     // Define maze configurations for different difficulty levels
@@ -123,7 +124,27 @@ const MazeGame = () => {
     const endpointImage = new Image();
     endpointImage.src = 'https://i.imgur.com/fq9B7Ro.png';
 
+    useEffect(() => {
+        const handleImageLoad = () => {
+            if (wallImage.complete && playerImage.complete && endpointImage.complete) {
+                setImagesLoaded(true);
+            }
+        };
+
+        wallImage.onload = handleImageLoad;
+        playerImage.onload = handleImageLoad;
+        endpointImage.onload = handleImageLoad;
+
+        return () => {
+            wallImage.onload = null;
+            playerImage.onload = null;
+            endpointImage.onload = null;
+        };
+    }, []);
+    
     const drawMaze = () => {
+	if (!imagesLoaded) return;
+	
         const canvas = canvasRef.current;
         const ctx = canvas.getContext('2d');
         const maze = mazeConfigs[difficulty][currentMazeIndex]?.maze;
