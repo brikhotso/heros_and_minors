@@ -1,13 +1,12 @@
-
 /* Mobile Devices */
 @media (max-width: 600px) {
   .mazeContainer {
     padding: 10px;
     height: auto;
-  }
-
-  .mazeContainer {
+    display: flex;
     flex-direction: column;
+    align-items: center;
+    background: linear-gradient(135deg, #74ebd5, #acb6e5); /* Add background for mobile */
   }
 
   .mazeCanvas {
@@ -28,7 +27,9 @@
   }
 
   .mazeControls {
+    display: flex;
     flex-direction: column;
+    align-items: center;
     margin-bottom: 10px;
   }
 
@@ -52,6 +53,10 @@
   .mazeContainer {
     padding: 15px;
     height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: linear-gradient(135deg, #74ebd5, #acb6e5); /* Add background for tablets */
   }
 
   .mazeCanvas {
@@ -72,6 +77,7 @@
   }
 
   .mazeControls {
+    display: flex;
     flex-direction: row;
     justify-content: center;
     margin-bottom: 15px;
@@ -94,7 +100,6 @@
 
 /* Desktops */
 @media (min-width: 901px) {
-
   .mazeContainer {
     margin: 0;
     padding: 0;
@@ -113,7 +118,7 @@
 
   @keyframes gradient {
       0% {
-	  background: 
+          background: 
             url('https://i.imgur.com/VpK7N2Q.png') no-repeat center, 
             linear-gradient(135deg, #74ebd5, #acb6e5);
           background-size: cover, cover;
@@ -202,7 +207,6 @@
       justify-content: center; /* Center buttons */
       margin-bottom: 20px; /* Space between controls and canvas */
   }
-  
   
   /* Modal Styles */
   .modal {
