@@ -4,12 +4,12 @@ import { Link } from 'react-router-dom';
 
 const HiddenObjectGame = () => {
   const objects = [
-    { id: 'hiddenObject1', src: 'https://i.imgur.com/6hK4wJk.png', position: { left: '600px', top: '200px' } },
-    { id: 'hiddenObject2', src: 'https://i.imgur.com/iabtXYR.jpg', position: { left: '160px', top: '470px' } },
-    { id: 'hiddenObject3', src: 'https://i.imgur.com/3HI1e96.jpg', position: { left: '610px', top: '460px' } },
-    { id: 'hiddenObject4', src: 'https://i.imgur.com/fq9B7Ro.png', position: { left: '440px', top: '350px' } },
-    { id: 'hiddenObject5', src: 'https://i.imgur.com/BS1Y5pO.jpg', position: { left: '70px', top: '250px' } },
-    { id: 'hiddenObject6', src: 'https://i.imgur.com/v2p1bPG.jpg', position: { left: '750px', top: '380px' } }
+      { id: 'hiddenObject1', src: 'https://i.imgur.com/6hK4wJk.png', position: { left: '50%', top: '30%' } },
+      { id: 'hiddenObject2', src: 'https://i.imgur.com/iabtXYR.jpg', position: { left: '10%', top: '70%' } },
+      { id: 'hiddenObject3', src: 'https://i.imgur.com/3HI1e96.jpg', position: { left: '55%', top: '75%' } },
+      { id: 'hiddenObject4', src: 'https://i.imgur.com/fq9B7Ro.png', position: { left: '40%', top: '55%' } },
+      { id: 'hiddenObject5', src: 'https://i.imgur.com/BS1Y5pO.jpg', position: { left: '8%', top: '40%' } },
+      { id: 'hiddenObject6', src: 'https://i.imgur.com/v2p1bPG.jpg', position: { left: '75%', top: '60%' } }
   ];
 
   const [currentObjectIndex, setCurrentObjectIndex] = useState(0);

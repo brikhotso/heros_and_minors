@@ -8,79 +8,59 @@
   .gameContainerInner {
     width: 100%;
     height: auto;
+    position: relative;
   }
 
-  .instructionContainer {
+  .gameBackground {
     width: 100%;
-    padding: 5px;
-    margin-bottom: 10px;
-  }
-
-  .instruction {
-    font-size: 16px;
-  }
-
-  .targetImage {
-    width: 40px;
-    height: 40px;
+    height: auto;
+    object-fit: contain; /* Ensure image scales while maintaining aspect ratio */
   }
 
   .hiddenObject {
-    width: 40px;
-    height: 40px;
-  }
-
-  .gameOverMessage {
-    font-size: 20px;
-    padding: 15px;
-  }
-
-  .backButton {
-    padding: 8px 15px;
-    font-size: 14px;
+    width: 30px; /* Smaller objects for mobile */
+    height: 30px;
   }
 }
 
 /* Tablets */
 @media (max-width: 900px) {
-  .gameContainer {
-    padding: 15px;
-    height: auto;
-  }
-
   .gameContainerInner {
     width: 90%;
+  }
+
+  .gameBackground {
+    width: 100%;
     height: auto;
-  }
-
-  .instructionContainer {
-    width: 90%;
-    padding: 8px;
-    margin-bottom: 15px;
-  }
-
-  .instruction {
-    font-size: 17px;
-  }
-
-  .targetImage {
-    width: 45px;
-    height: 45px;
+    object-fit: cover;
   }
 
   .hiddenObject {
-    width: 45px;
-    height: 45px;
+    width: 40px;
+    height: 40px;
+  }
+}
+
+/* Desktops */
+@media (min-width: 901px) {
+  .gameContainerInner {
+    width: 800px;
+    height: 600px;
+    position: relative;
   }
 
-  .gameOverMessage {
-    font-size: 22px;
-    padding: 18px;
+  .gameBackground {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
   }
 
-  .backButton {
-    padding: 9px 18px;
-    font-size: 16px;
+  .hiddenObject {
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+    position: absolute;
+    transform: translate(-50%, -50%); /* Center each object */
   }
 }
 

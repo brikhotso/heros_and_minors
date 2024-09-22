@@ -11,6 +11,7 @@ const MazeGame = () => {
     const [showModal, setShowModal] = useState(false);
     const [modalMessage, setModalMessage] = useState('');
     const [imagesLoaded, setImagesLoaded] = useState(false);
+    const canvasRef = useRef(null);
 
     // Define maze configurations for different difficulty levels
     const mazeConfigs = {
@@ -265,6 +266,54 @@ const MazeGame = () => {
             window.removeEventListener('keydown', handleKeyDown);
         };
     }, [handleKeyDown]);
+
+    // Touch event handlers
+    const handleTouchStart = useCallback((event) => {
+        const touch = event.touches[0];
+        setTouchStart({ x: touch.clientX, y: touch.clientY });
+    }, []);
+
+    const handleTouchMove = useCallback((event) => {
+        if (!touchStart) return;
+
+        const touch = event.touches[0];
+        const deltaX = touch.clientX - touchStart.x;
+        const deltaY = touch.clientY - touchStart.y;
+
+        if (Math.abs(deltaX) > Math.abs(deltaY)) {
+            // Horizontal swipe
+            if (deltaX > 0) {
+                handleKeyDown({ key: 'ArrowRight' });
+            } else {
+                handleKeyDown({ key: 'ArrowLeft' });
+            }
+        } else {
+            // Vertical swipe
+            if (deltaY > 0) {
+                handleKeyDown({ key: 'ArrowDown' });
+            } else {
+                handleKeyDown({ key: 'ArrowUp' });
+            }
+        }
+
+        setTouchStart(null);
+    }, [touchStart, handleKeyDown]);
+
+    const handleTouchEnd = useCallback(() => {
+        setTouchStart(null);
+    }, []);
+
+    useEffect(() => {
+        window.addEventListener('touchstart', handleTouchStart);
+        window.addEventListener('touchmove', handleTouchMove);
+        window.addEventListener('touchend', handleTouchEnd);
+
+        return () => {
+            window.removeEventListener('touchstart', handleTouchStart);
+            window.removeEventListener('touchmove', handleTouchMove);
+            window.removeEventListener('touchend', handleTouchEnd);
+        };
+    }, [handleTouchStart, handleTouchMove, handleTouchEnd]);
 
     return (
         <div id="mazeContainer" className={styles.mazeContainer}>

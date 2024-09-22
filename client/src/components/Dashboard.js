@@ -11,6 +11,7 @@ function Dashboard() {
   const token = localStorage.getItem('token');
   const offline = localStorage.getItem('offline');
   const navigate = useNavigate();
+  const [isSidebarActive, setSidebarActive] = useState(false);
 
   useEffect(() => {
     if (token) {
@@ -32,6 +33,10 @@ function Dashboard() {
     }
   }, [token, offline]);
 
+  const toggleSidebar = () => {
+    setSidebarActive(!isSidebarActive);
+  };
+    
   const handleLogout = () => {
     localStorage.removeItem('token');
     localStorage.removeItem('offline');
@@ -60,7 +65,7 @@ function Dashboard() {
       </header>
 
       <div className={styles.container}>
-        <aside className={styles.sidebar}>
+        <aside className={`${styles.sidebar} ${isSidebarActive ? styles.active : ''}`}>
           <ul>
             <li><Link to="/mazegame"><FaPuzzlePiece /> Maze Game</Link></li> {/* Direct link to maze game */}
             <li><Link to="/hiddenobjectgame"><FaSearch /> Hidden Object Game</Link></li>
