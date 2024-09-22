@@ -1,7 +1,101 @@
-/* MazeGame.module.css */
 
-/* General Styles */
-.mazeContainer {
+/* Mobile Devices */
+@media (max-width: 600px) {
+  .mazeContainer {
+    padding: 10px;
+    height: auto;
+  }
+
+  .mazeContainer {
+    flex-direction: column;
+  }
+
+  .mazeCanvas {
+    width: 100%;
+    height: auto;
+  }
+
+  button {
+    padding: 10px 15px;
+    font-size: 14px;
+    margin: 5px;
+  }
+
+  select {
+    padding: 10px;
+    font-size: 14px;
+    margin: 5px;
+  }
+
+  .mazeControls {
+    flex-direction: column;
+    margin-bottom: 10px;
+  }
+
+  .modalContent {
+    padding: 15px;
+  }
+
+  .modalButton {
+    padding: 8px 15px;
+    font-size: 14px;
+  }
+
+  .backButton {
+    padding: 8px 15px;
+    font-size: 14px;
+  }
+}
+
+/* Tablets */
+@media (max-width: 900px) {
+  .mazeContainer {
+    padding: 15px;
+    height: auto;
+  }
+
+  .mazeCanvas {
+    width: 90%;
+    height: auto;
+  }
+
+  button {
+    padding: 12px 20px;
+    font-size: 16px;
+    margin: 8px;
+  }
+
+  select {
+    padding: 12px;
+    font-size: 16px;
+    margin: 8px;
+  }
+
+  .mazeControls {
+    flex-direction: row;
+    justify-content: center;
+    margin-bottom: 15px;
+  }
+
+  .modalContent {
+    padding: 18px;
+  }
+
+  .modalButton {
+    padding: 9px 18px;
+    font-size: 15px;
+  }
+
+  .backButton {
+    padding: 9px 18px;
+    font-size: 15px;
+  }
+}
+
+/* Desktops */
+@media (min-width: 901px) {
+
+  .mazeContainer {
     margin: 0;
     padding: 0;
     height: 100vh;
@@ -15,154 +109,155 @@
     background-size: cover, cover; /* Cover the entire background */
     animation: gradient 15s ease infinite; /* Background animation */
     font-family: 'Comic Sans MS', 'Chalkboard SE', 'Comic Neue', cursive; /* Fun fonts */
-}
+  }
 
-@keyframes gradient {
-    0% {
-        background: 
+  @keyframes gradient {
+      0% {
+	  background: 
             url('https://i.imgur.com/VpK7N2Q.png') no-repeat center, 
             linear-gradient(135deg, #74ebd5, #acb6e5);
-        background-size: cover, cover;
-    }
-    50% {
-        background: 
-            url('https://i.imgur.com/VpK7N2Q.png') no-repeat center, 
-            linear-gradient(135deg, #acb6e5, #74ebd5);
-        background-size: cover, cover;
-    }
-    100% {
-        background: 
-            url('https://i.imgur.com/VpK7N2Q.png') no-repeat center, 
-            linear-gradient(135deg, #74ebd5, #acb6e5);
-        background-size: cover, cover;
-    }
-}
+          background-size: cover, cover;
+      }
+      50% {
+          background: 
+              url('https://i.imgur.com/VpK7N2Q.png') no-repeat center, 
+              linear-gradient(135deg, #acb6e5, #74ebd5);
+          background-size: cover, cover;
+      }
+      100% {
+          background: 
+              url('https://i.imgur.com/VpK7N2Q.png') no-repeat center, 
+              linear-gradient(135deg, #74ebd5, #acb6e5);
+          background-size: cover, cover;
+      }
+  }
 
-/* Canvas Style */
-.mazeCanvas {
-    border: none;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-}
+  /* Canvas Style */
+  .mazeCanvas {
+      border: none;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  }
+  
+  /* Button Styles */
+  button {
+      padding: 15px 25px;
+      margin: 10px;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      font-size: 18px;
+      font-family: 'Comic Sans MS', 'Chalkboard SE', 'Comic Neue', cursive; /* Fun fonts */
+      transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;
+      background-color: #ff6f61; /* Fun color */
+      color: white;
+      font-weight: bold;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+      animation: bounce 2s infinite;
+  }
+  
+  button:hover {
+      background-color: #ff8c69; /* Lighter fun color */
+      transform: scale(1.1); /* Slightly enlarge on hover */
+      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
+  }
+  
+  button:active {
+      transform: scale(0.95); /* Slightly shrink on click */
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
 
-/* Button Styles */
-button {
-    padding: 15px 25px;
-    margin: 10px;
-    border: none;
-    border-radius: 10px;
-    cursor: pointer;
-    font-size: 18px;
-    font-family: 'Comic Sans MS', 'Chalkboard SE', 'Comic Neue', cursive; /* Fun fonts */
-    transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;
-    background-color: #ff6f61; /* Fun color */
-    color: white;
-    font-weight: bold;
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-    animation: bounce 2s infinite;
-}
+  @keyframes bounce {
+      0%, 20%, 50%, 80%, 100% {
+          transform: translateY(0);
+      }
+      40% {
+          transform: translateY(-10px);
+      }
+      60% {
+          transform: translateY(-5px);
+      }
+  }
 
-button:hover {
-    background-color: #ff8c69; /* Lighter fun color */
-    transform: scale(1.1); /* Slightly enlarge on hover */
-    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
-}
-
-button:active {
-    transform: scale(0.95); /* Slightly shrink on click */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-}
-
-@keyframes bounce {
-    0%, 20%, 50%, 80%, 100% {
-        transform: translateY(0);
-    }
-    40% {
-        transform: translateY(-10px);
-    }
-    60% {
-        transform: translateY(-5px);
-    }
-}
-
-/* Dropdown Styles */
-select {
-    padding: 15px;
-    margin: 10px;
-    border: none;
-    border-radius: 10px;
-    font-size: 18px;
-    font-family: 'Comic Sans MS', 'Chalkboard SE', 'Comic Neue', cursive; /* Fun fonts */
-    background-color: #ffcc5c; /* Fun color */
-    cursor: pointer;
-    transition: background-color 0.3s, transform 0.3s;
-}
-
-select:hover {
-    background-color: #ffe066; /* Lighter fun color */
-    transform: scale(1.05); /* Slightly enlarge on hover */
-}
-
-/* Controls Style */
-.mazeControls {
-    display: flex; /* Ensure the controls are in a row */
-    justify-content: center; /* Center buttons */
-    margin-bottom: 20px; /* Space between controls and canvas */
-}
-
-
-/* Modal Styles */
-.modal {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.5);
-    z-index: 1000;
-}
-
-.modalContent {
-    background: white;
-    padding: 20px;
-    border-radius: 10px;
-    text-align: center;
-    font-family: 'Comic Sans MS', 'Chalkboard SE', 'Comic Neue', cursive;
-}
-
-.modalButton {
-    padding: 10px 20px;
-    margin-top: 10px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    background-color: #ff6f61;
-    color: white;
-    font-size: 16px;
-    font-weight: bold;
-    transition: background-color 0.3s;
-}
-
-.modalButton:hover {
-    background-color: #ff8c69;
-}
-
-.backButton {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  padding: 10px 20px;
-  border-radius: 5px;
-  border: none;
-  background-color: #ff6699;
-  color: white;
-  cursor: pointer;
-  text-decoration: none;
-  transition: background-color 0.3s ease;
-}
-
-.backButton:hover {
-  background-color: #ff3366;
+  /* Dropdown Styles */
+  select {
+      padding: 15px;
+      margin: 10px;
+      border: none;
+      border-radius: 10px;
+      font-size: 18px;
+      font-family: 'Comic Sans MS', 'Chalkboard SE', 'Comic Neue', cursive; /* Fun fonts */
+      background-color: #ffcc5c; /* Fun color */
+      cursor: pointer;
+      transition: background-color 0.3s, transform 0.3s;
+  }
+  
+  select:hover {
+      background-color: #ffe066; /* Lighter fun color */
+      transform: scale(1.05); /* Slightly enlarge on hover */
+  }
+  
+  /* Controls Style */
+  .mazeControls {
+      display: flex; /* Ensure the controls are in a row */
+      justify-content: center; /* Center buttons */
+      margin-bottom: 20px; /* Space between controls and canvas */
+  }
+  
+  
+  /* Modal Styles */
+  .modal {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      z-index: 1000;
+  }
+  
+  .modalContent {
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      text-align: center;
+      font-family: 'Comic Sans MS', 'Chalkboard SE', 'Comic Neue', cursive;
+  }
+  
+  .modalButton {
+      padding: 10px 20px;
+      margin-top: 10px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      background-color: #ff6f61;
+      color: white;
+      font-size: 16px;
+      font-weight: bold;
+      transition: background-color 0.3s;
+  }
+  
+  .modalButton:hover {
+      background-color: #ff8c69;
+  }
+  
+  .backButton {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      padding: 10px 20px;
+      border-radius: 5px;
+      border: none;
+      background-color: #ff6699;
+      color: white;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background-color 0.3s ease;
+  }
+  
+  .backButton:hover {
+      background-color: #ff3366;
+  }
 }

@@ -1,115 +1,205 @@
-/* Container styling */
-.container {
-  font-family: Arial, sans-serif;
-  background-color: #f0f8ff;
-  margin: 0;
-  padding: 20px;
-  border-radius: 5px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+/* Mobile Devices */
+@media (max-width: 600px) {
+  .container {
+    padding: 10px;
+    border-radius: 3px;
+  }
+
+  h2 {
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+  }
+
+  button {
+    padding: 8px 15px;
+    font-size: 1rem;
+    margin-top: 10px;
+    width: 100%; /* Full width buttons */
+  }
+
+  ul {
+    margin: 15px 0;
+  }
+
+  .listItem {
+    padding: 10px;
+    margin: 5px 0;
+  }
+
+  .buttonContainer {
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  .form {
+    padding: 15px;
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .input, .textarea, .select {
+    font-size: 0.9rem;
+    padding: 8px;
+  }
 }
 
-/* Heading styling */
-h2 {
-  font-size: 2rem;
-  color: #42b983; /* Bright green color for titles */
-  text-align: center;
-  margin-bottom: 20px;
+/* Tablets */
+@media (max-width: 900px) {
+  .container {
+    padding: 15px;
+    border-radius: 4px;
+  }
+
+  h2 {
+    font-size: 1.75rem;
+    margin-bottom: 18px;
+  }
+
+  button {
+    padding: 9px 18px;
+    font-size: 1.1rem;
+    margin-top: 12px;
+  }
+
+  ul {
+    margin: 18px 0;
+  }
+
+  .listItem {
+    padding: 12px;
+    margin: 8px 0;
+  }
+
+  .buttonContainer {
+    gap: 8px;
+  }
+
+  .form {
+    padding: 18px;
+    width: 90%;
+    max-width: 350px;
+  }
+
+  .input, .textarea, .select {
+    font-size: 0.95rem;
+    padding: 9px;
+  }
 }
 
-/* General button styling */
-button {
-  background-color: #42b983;
-  color: white;
-  padding: 10px 20px;
-  font-size: 1.2rem;
-  border: none;
-  border-radius: 12px;
-  cursor: pointer;
-  margin-top: 15px;
-  transition: background-color 0.3s ease, transform 0.3s ease;
-  width: auto; /* Ensure buttons are not full width */
-  display: inline-block; /* Ensure buttons are inline */
-}
-
-button:hover {
-  background-color: #70d79e; /* Brighter color on hover */
-  transform: scale(1.1);
-}
-
-/* List styling */
-ul {
-  list-style-type: none;
-  padding: 0;
-  margin: 20px 0;
-}
-
-/* List item styling */
-.listItem {
-  background-color: #eafff7;
-  padding: 15px;
-  margin: 10px 0;
-  border-radius: 10px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-/* Flex container for buttons */
-.buttonContainer {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-}
-
-/* Success message styling */
-.success {
-  color: #42b983;
-  font-size: 1.1rem;
-  text-align: center;
-}
-
-/* Error message styling */
-.error {
-  color: red;
-  font-size: 1.1rem;
-  text-align: center;
-}
-
-button + button {
-  margin-left: 10px;
-}
-
-/* Form styling */
-.form {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  background-color: #fff;
-  padding: 20px;
-  border-radius: 15px;
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-  width: 80%;
-  max-width: 400px;
-  margin: 0 auto;
-  transition: transform 0.3s ease;
-}
-
-.form:hover {
-  transform: scale(1.05); /* Small zoom-in effect */
-}
-
-.input, .textarea, .select {
-  font-size: 1rem;
-  padding: 10px;
-  margin: 10px 0;
-  width: 100%;
-  border: 2px solid #42b983;
-  border-radius: 10px;
-  background-color: #eafff7;
-  outline: none;
-}
-
-.input:focus, .textarea:focus, .select:focus {
-  border-color: #70d79e;
+/* Desktops */
+@media (min-width: 901px) {
+  .container {
+    font-family: Arial, sans-serif;
+    background-color: #f0f8ff;
+    margin: 0;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Heading styling */
+  h2 {
+      font-size: 2rem;
+      color: #42b983; /* Bright green color for titles */
+      text-align: center;
+      margin-bottom: 20px;
+  }
+  
+  /* General button styling */
+  button {
+      background-color: #42b983;
+      color: white;
+      padding: 10px 20px;
+      font-size: 1.2rem;
+      border: none;
+      border-radius: 12px;
+      cursor: pointer;
+      margin-top: 15px;
+      transition: background-color 0.3s ease, transform 0.3s ease;
+      width: auto; /* Ensure buttons are not full width */
+      display: inline-block; /* Ensure buttons are inline */
+  }
+  
+  button:hover {
+      background-color: #70d79e; /* Brighter color on hover */
+      transform: scale(1.1);
+  }
+  
+  /* List styling */
+  ul {
+      list-style-type: none;
+      padding: 0;
+      margin: 20px 0;
+  }
+  
+  /* List item styling */
+  .listItem {
+      background-color: #eafff7;
+      padding: 15px;
+      margin: 10px 0;
+      border-radius: 10px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+  }
+  
+  /* Flex container for buttons */
+  .buttonContainer {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+  }
+  
+  /* Success message styling */
+  .success {
+      color: #42b983;
+      font-size: 1.1rem;
+      text-align: center;
+  }
+  
+  /* Error message styling */
+  .error {
+      color: red;
+      font-size: 1.1rem;
+      text-align: center;
+  }
+  
+  button + button {
+      margin-left: 10px;
+  }
+  
+  /* Form styling */
+  .form {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 15px;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+      width: 80%;
+      max-width: 400px;
+      margin: 0 auto;
+      transition: transform 0.3s ease;
+  }
+  
+  .form:hover {
+      transform: scale(1.05); /* Small zoom-in effect */
+  }
+  
+  .input, .textarea, .select {
+      font-size: 1rem;
+      padding: 10px;
+      margin: 10px 0;
+      width: 100%;
+      border: 2px solid #42b983;
+      border-radius: 10px;
+      background-color: #eafff7;
+      outline: none;
+  }
+  
+  .input:focus, .textarea:focus, .select:focus {
+      border-color: #70d79e;
+  }
 }

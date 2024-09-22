@@ -1,4 +1,235 @@
-/* Container for the landing page */
+/* Mobile Devices */
+@media (max-width: 600px) {
+  .landing-container {
+    padding: 10px;
+  }
+
+  .landing-header {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .landing-header .logo img {
+    height: 30px;
+  }
+
+  .landing-header nav ul {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .landing-header nav ul li {
+    margin: 10px 0;
+  }
+
+  .hero-section {
+    padding: 50px 10px;
+  }
+
+  .hero-section h1 {
+    font-size: 32px;
+  }
+
+  .hero-section p {
+    font-size: 18px;
+  }
+
+  .hero-buttons .get-started, .hero-buttons .learn-more {
+    padding: 15px 30px;
+    font-size: 18px;
+    margin: 10px;
+  }
+
+  .about-section {
+    padding: 40px 20px;
+  }
+
+  .about-section h2 {
+    font-size: 28px;
+  }
+
+  .about-section p {
+    font-size: 16px;
+  }
+
+  .team-section {
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+  }
+
+  .team-photo {
+    width: 150px;
+    height: 150px;
+    margin: 0;
+  }
+
+  .team-section p {
+    margin: 20px 0;
+  }
+
+  .team-section h2 {
+    font-size: 28px;
+  }
+
+  .features-section {
+    padding: 30px 10px;
+  }
+
+  .features-list {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .feature-item {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+
+  .testimonials-section {
+    padding: 30px 10px;
+  }
+
+  .testimonials-section h2 {
+    font-size: 28px;
+  }
+
+  .testimonials-section p {
+    font-size: 16px;
+  }
+
+  .contact-section {
+    padding: 20px 10px;
+  }
+
+  .contact-section h2 {
+    font-size: 28px;
+  }
+
+  .social-icons img {
+    width: 40px;
+    height: 40px;
+  }
+
+  .footer {
+    padding: 10px;
+  }
+}
+
+/* Tablets */
+@media (max-width: 900px) {
+  .landing-container {
+    padding: 15px;
+  }
+
+  .landing-header .logo img {
+    height: 40px;
+  }
+
+  .landing-header nav ul {
+    flex-direction: row;
+    justify-content: center;
+  }
+
+  .landing-header nav ul li {
+    margin: 0 15px;
+  }
+
+  .hero-section {
+    padding: 70px 15px;
+  }
+
+  .hero-section h1 {
+    font-size: 40px;
+  }
+
+  .hero-section p {
+    font-size: 20px;
+  }
+
+  .hero-buttons .get-started, .hero-buttons .learn-more {
+    padding: 18px 35px;
+    font-size: 20px;
+    margin: 15px;
+  }
+
+  .about-section {
+    padding: 60px 30px;
+  }
+
+  .about-section h2 {
+    font-size: 32px;
+  }
+
+  .about-section p {
+    font-size: 18px;
+  }
+
+  .team-section {
+    flex-direction: row;
+    align-items: center;
+    padding: 30px;
+  }
+
+  .team-photo {
+    width: 180px;
+    height: 180px;
+    margin-left: 100px;
+  }
+
+  .team-section p {
+    margin-right: 100px;
+  }
+
+  .team-section h2 {
+    font-size: 32px;
+  }
+
+  .features-section {
+    padding: 40px 15px;
+  }
+
+  .features-list {
+    flex-direction: row;
+    justify-content: space-around;
+  }
+
+  .feature-item {
+    width: 45%;
+    margin-bottom: 20px;
+  }
+
+  .testimonials-section {
+    padding: 40px 15px;
+  }
+
+  .testimonials-section h2 {
+    font-size: 32px;
+  }
+
+  .testimonials-section p {
+    font-size: 18px;
+  }
+
+  .contact-section {
+    padding: 30px 15px;
+  }
+
+  .contact-section h2 {
+    font-size: 32px;
+  }
+
+  .social-icons img {
+    width: 50px;
+    height: 50px;
+  }
+
+  .footer {
+    padding: 15px;
+  }
+}
+
+
 .landing-container {
   font-family: 'Comic Sans MS', sans-serif;
   background: url('https://i.imgur.com/OyGLzA8.png') no-repeat center center fixed;

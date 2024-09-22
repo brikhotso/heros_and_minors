@@ -1,33 +1,60 @@
-/* Modal.module.css */
+@media (max-width: 600px) {
+  .modalContent {
+    padding: 20px;
+    max-height: 90vh; /* Increase max height for smaller screens */
+  }
 
-.modalOverlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: rgba(0, 0, 0, 0.5);
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  .closeButton {
+    font-size: 18px;
+    top: 5px;
+    right: 10px;
+  }
 }
 
-.modalContent {
-  background-color: #fff;
-  padding: 30px;
-  border-radius: 5px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  position: relative;
-  max-height: 80vh; /* Set maximum height */
-  overflow-y: auto; /* Enable scrolling if content overflows */
+/* Tablets */
+@media (max-width: 900px) {
+  .modalContent {
+    padding: 25px;
+  }
+
+  .closeButton {
+    font-size: 19px;
+    top: 8px;
+    right: 15px;
+  }
 }
 
-.closeButton {
-  position: absolute;
-  top: 10px;
-  right: 20px;
-  background: none;
-  border: none;
-  font-size: 20px;
-  cursor: pointer;
+/* Desktops */
+@media (min-width: 901px) {
+    .modalOverlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: rgba(0, 0, 0, 0.5);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .modalContent {
+      background-color: #fff;
+      padding: 30px;
+      border-radius: 5px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      position: relative;
+      max-height: 80vh; /* Set maximum height */
+      overflow-y: auto; /* Enable scrolling if content overflows */
+    }
+
+    .closeButton {
+	position: absolute;
+	top: 10px;
+	right: 20px;
+	background: none;
+	border: none;
+	font-size: 20px;
+	cursor: pointer;
+    }
 }

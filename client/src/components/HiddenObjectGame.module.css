@@ -1,5 +1,92 @@
-/* General Styles */
-.gameContainer {
+/* Mobile Devices */
+@media (max-width: 600px) {
+  .gameContainer {
+    padding: 10px;
+    height: auto;
+  }
+
+  .gameContainerInner {
+    width: 100%;
+    height: auto;
+  }
+
+  .instructionContainer {
+    width: 100%;
+    padding: 5px;
+    margin-bottom: 10px;
+  }
+
+  .instruction {
+    font-size: 16px;
+  }
+
+  .targetImage {
+    width: 40px;
+    height: 40px;
+  }
+
+  .hiddenObject {
+    width: 40px;
+    height: 40px;
+  }
+
+  .gameOverMessage {
+    font-size: 20px;
+    padding: 15px;
+  }
+
+  .backButton {
+    padding: 8px 15px;
+    font-size: 14px;
+  }
+}
+
+/* Tablets */
+@media (max-width: 900px) {
+  .gameContainer {
+    padding: 15px;
+    height: auto;
+  }
+
+  .gameContainerInner {
+    width: 90%;
+    height: auto;
+  }
+
+  .instructionContainer {
+    width: 90%;
+    padding: 8px;
+    margin-bottom: 15px;
+  }
+
+  .instruction {
+    font-size: 17px;
+  }
+
+  .targetImage {
+    width: 45px;
+    height: 45px;
+  }
+
+  .hiddenObject {
+    width: 45px;
+    height: 45px;
+  }
+
+  .gameOverMessage {
+    font-size: 22px;
+    padding: 18px;
+  }
+
+  .backButton {
+    padding: 9px 18px;
+    font-size: 16px;
+  }
+}
+
+/* Desktops */
+@media (min-width: 901px) {
+  .gameContainer {
     margin: 0;
     padding: 0;
     height: 100vh;
@@ -10,10 +97,10 @@
     background-size: 400% 400%;
     animation: gradientBackground 15s ease infinite;
     font-family: 'Comic Sans MS', sans-serif; /* Fun font */
-}
+  }
 
-/* Gradient Animation */
-@keyframes gradientBackground {
+  /* Gradient Animation */
+  @keyframes gradientBackground {
     0% {
         background-position: 0% 50%;
     }
@@ -23,118 +110,119 @@
     100% {
         background-position: 0% 50%;
     }
-}
+  }
 
-/* Game Container */
-.gameContainerInner {
+  /* Game Container */
+  .gameContainerInner {
     position: relative;
     width: 800px;
     height: 600px;
     margin: 0 auto;
     text-align: center;
-}
+  }
 
-/* Game Background Image */
-.gameBackground {
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: 1;
-    object-fit: cover;
-    border-radius: 15px;
-}
+  /* Game Background Image */
+  .gameBackground {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: 1;
+      object-fit: cover;
+      border-radius: 15px;
+  }
+  
+  /* Hidden Object Styles */
+  .hiddenObject {
+      position: absolute;
+      z-index: 2;
+      width: 50px;
+      height: 50px;
+      cursor: pointer;
+      transition: transform 0.3s;
+  }
+  
+  .hiddenObject:hover {
+      transform: scale(1.1); /* Slightly enlarge on hover */
+  }
+  
+  .gameOverMessage {
+      position: absolute;
+      z-index: 10;
+      top: 50%;  /* Center it vertically */
+      left: 50%; /* Center it horizontally */
+      transform: translate(-50%, -50%); /* Adjust position based on its own width/height */
+      background: rgba(255, 255, 255, 0.9);
+      padding: 20px;
+      border-radius: 10px;
+      font-size: 24px;
+      font-weight: bold;
+      color: #4CAF50;
+      box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
+      text-align: center;
+      animation: bounceIn 1s ease;
+  }
 
-/* Hidden Object Styles */
-.hiddenObject {
-    position: absolute;
-    z-index: 2;
-    width: 50px;
-    height: 50px;
-    cursor: pointer;
-    transition: transform 0.3s;
-}
-
-.hiddenObject:hover {
-    transform: scale(1.1); /* Slightly enlarge on hover */
-}
-
-.gameOverMessage {
-  position: absolute;
-  z-index: 10;
-  top: 50%;  /* Center it vertically */
-  left: 50%; /* Center it horizontally */
-  transform: translate(-50%, -50%); /* Adjust position based on its own width/height */
-  background: rgba(255, 255, 255, 0.9);
-  padding: 20px;
-  border-radius: 10px;
-  font-size: 24px;
-  font-weight: bold;
-  color: #4CAF50;
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
-  text-align: center;
-  animation: bounceIn 1s ease;
-}
-
-/* Bounce Animation for Game Over Message */
-@keyframes bounceIn {
-    0% {
-        transform: scale(0.5);
-        opacity: 0;
-    }
-    80% {
-        transform: scale(1.1);
-        opacity: 1;
-    }
-    100% {
-        transform: scale(1);
-    }
-}
-
-/* Instruction Container */
-.instructionContainer {
-    position: relative;
-    z-index: 2;
-    background: rgba(255, 255, 255, 0.8); /* Optional: Add a translucent background to make text more readable */
-    padding: 10px;
-    border-radius: 5px;
-    display: flex;
-    align-items: center; /* Vertically align instruction and image */
-    justify-content: center; /* Horizontally center instruction and image */
-    margin-bottom: 20px;
-    width: 770px; /* Adjust size as needed */
-    height: auto;
-    margin: 5px; /* Center the container */
-}
-
-.instruction {
-    margin-right: 10px; /* Space between text and image */
-    font-size: 18px;
-    font-weight: bold;
-}
-
-.targetImage {
-    width: 50px; /* Adjust size as needed */
-    height: 50px;
-    border-radius: 50%;
-    background: rgba(255, 255, 255, 0.8);
-}
-
-.backButton {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  padding: 10px 20px;
-  border-radius: 5px;
-  border: none;
-  background-color: #ff6699;
-  color: white;
-  cursor: pointer;
-  text-decoration: none;
-  transition: background-color 0.3s ease;
-}
-
-.backButton:hover {
-  background-color: #ff3366;
+  /* Bounce Animation for Game Over Message */
+  @keyframes bounceIn {
+      0% {
+          transform: scale(0.5);
+          opacity: 0;
+      }
+      80% {
+          transform: scale(1.1);
+          opacity: 1;
+      }
+      100% {
+          transform: scale(1);
+      }
+  }
+  
+  /* Instruction Container */
+  .instructionContainer {
+      position: relative;
+      z-index: 2;
+      background: rgba(255, 255, 255, 0.8); /* Optional: Add a translucent background to make text more readable */
+      padding: 10px;
+      border-radius: 5px;
+      display: flex;
+      align-items: center; /* Vertically align instruction and image */
+      justify-content: center; /* Horizontally center instruction and image */
+      margin-bottom: 20px;
+      width: 770px; /* Adjust size as needed */
+      height: auto;
+      margin: 5px; /* Center the container */
+  }
+  
+  .instruction {
+      margin-right: 10px; /* Space between text and image */
+      font-size: 18px;
+      font-weight: bold;
+  }
+  
+  .targetImage {
+      width: 50px; /* Adjust size as needed */
+      height: 50px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.8);
+  }
+  
+  .backButton {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      padding: 10px 20px;
+      border-radius: 5px;
+      border: none;
+      background-color: #ff6699;
+      color: white;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background-color 0.3s ease;
+  }
+  
+  .backButton:hover {
+      background-color: #ff3366;
+  }
 }
