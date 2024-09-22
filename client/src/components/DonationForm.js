@@ -81,75 +81,45 @@ function DonationForm({ onDonationCreatedOrUpdated }) {
       onDonationCreatedOrUpdated(); // Call the callback to refresh the donation list
     } catch (err) {
         setError('Error updating donation');
-	setMessage(null);
+	console.error(err);
     }
   };
 
   return (
     <div className={commonStyles.container}>
-      <h2>📝 Donations List</h2>
-      <button onClick={() => {
-        if (!token) {
-          navigate('/login');
-        } else {
-          setIsModalOpen(true);
-        }
-      }} className={commonStyles.createButton}>Create Donation 🎁</button>
-      <ul>
-        {donations.map((donation) => (
-          <li key={donation._id} className={commonStyles.listItem}>
-            <strong>{donation.title} 🎈</strong> - {donation.description} (Posted by: {donation.donor.name})
-            <p>Type: {donation.type}</p>
-            <p>Condition: {donation.condition}</p>
-            <p>Status: {donation.status}</p>
-
-            {donation.status === 'available' && currentUser && currentUser._id !== donation.donor._id && (
-              <button onClick={() => handleRequestDonation(donation._id)}>Request Donation 🎁</button>
-            )}
-
-            {donation.status === 'requested' && currentUser && currentUser._id === donation.donor._id && (
-              <>
-                <button onClick={() => fetchRequests(donation._id)}>View Requests 👀</button>
-                {requestsByDonation[donation._id] && requestsByDonation[donation._id].length > 0 && (
-                  requestsByDonation[donation._id].map((request) => (
-                    <div key={request._id} className={commonStyles.requestCard}>
-                      <p><strong>Message:</strong> {request.message}</p>
-                      <p><strong>Location:</strong> {request.location}</p>
-                      <p><strong>Contact Info:</strong> {request.contactInfo}</p>
-                      <button onClick={() => handleAcceptRequest(donation._id, request._id)}>
-                        Accept Request from {request.interested_user.name} 🎉
-                      </button>
-                    </div>
-                  ))
-                )}
-              </>
-            )}
-
-            {donation.status === 'accepted' &&
-              requestsByDonation[donation._id] &&
-              requestsByDonation[donation._id].some(request =>
-                request.status === 'accepted' &&
-                request.interested_user._id === currentUser._id
-              ) && (
-                <button onClick={() => handleMarkReceived(donation._id)}>Mark as Received ✅</button>
-              )}
-
-            {currentUser && currentUser._id === donation.donor._id && (
-              <>
-                <button onClick={() => handleEditDonation(donation)}>✏️ Edit Donation</button>
-                <button onClick={() => handleDeleteDonation(donation._id)}>❌ Delete Donation</button>
-              </>
-            )}
-          </li>
-        ))}
-      </ul>
+      <h2>{isEditing ? '✏️ Update Donation' : '🎁 Create a Donation'}</h2>
+      <form onSubmit={isEditing ? handleUpdateDonation : handleCreateDonation} className={commonStyles.form}>
+        <input
+          type="text"
+          name="title"
+          placeholder="Donation Title 🎨"
+          value={donationData.title}
+          onChange={handleChange}
+          required
+          className={commonStyles.input}
+        />
+        <textarea
+          name="description"
+          placeholder="Donation Description 🌟"
+          value={donationData.description}
+          onChange={handleChange}
+          className={commonStyles.textarea}
+        />
+        <select name="type" value={donationData.type} onChange={handleChange} className={commonStyles.select}>
+          <option value="item">Item</option>
+          <option value="service">Service</option>
+        </select>
+        <select name="condition" value={donationData.condition} onChange={handleChange} className={commonStyles.select}>
+          <option value="new">New</option>
+          <option value="gently used">Gently Used</option>
+          <option value="used">Used</option>
+        </select>
+        <button type="submit" className={commonStyles.button}>{isEditing ? 'Update Donation' : 'Create Donation'} 🎁</button>
+      </form>
       {message && <p className={commonStyles.success}>{message}</p>}
       {error && <p className={commonStyles.error}>{error}</p>}
-      <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
-        <DonationForm onDonationCreatedOrUpdated={handleDonationCreatedOrUpdated} />
-      </Modal>
     </div>
   );
 }
 
-export default DonationList;
+export default DonationForm;

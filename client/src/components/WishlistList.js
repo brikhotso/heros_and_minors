@@ -2,7 +2,7 @@
 import axiosInstance from '../axiosConfig';
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import styles from './CommonStyles.module.css';
+import commonStyles from './CommonStyles.module.css';
 import Modal from './Modal';
 import WishlistForm from './WishlistForm';
 
@@ -39,7 +39,7 @@ function WishlistList() {
       console.error(err);
     }
   };
-
+    
   const fetchWishlist = async () => {
     try {
       const response = await axiosInstance.get('/api/wishes');
@@ -141,7 +141,7 @@ function WishlistList() {
   };
 
   return (
-    <div className={CommonStyles.container}>
+    <div className={commonStyles.container}>
       <h2>🌈 Your Wishlist 🌈</h2>
       <button onClick={() => {
         if (!token) {
@@ -149,13 +149,13 @@ function WishlistList() {
         } else {
           setIsModalOpen(true);
         }
-      }} className={CommonStyles.createButton}>Create Wish 🎁</button>
+      }} className={commonStyles.createButton}>Create Wish 🎁</button>
       <ul>
         {wishlist.map((wish) => (
-          <li key={wish._id} className={CommonStyles.listItem}>
+          <li key={wish._id} className={commonStyles.listItem}>
             <strong>{wish.title} 🎈</strong> - {wish.description} (Posted by: {wish.posted_by.name})
 
-            <div className={CommonStyles.buttonContainer}>
+            <div className={commonStyles.buttonContainer}>
               {wish.status === 'pending' && (
                 <>
                   {wish.posted_by._id.toString() === currentUserId ? (
@@ -178,8 +178,8 @@ function WishlistList() {
           </li>
         ))}
       </ul>
-      {message && <p className={CommonStyles.success}>{message}</p>}
-      {error && <p className={CommonStyles.error}>{error}</p>}
+      {message && <p className={commonStyles.success}>{message}</p>}
+      {error && <p className={commonStyles.error}>{error}</p>}
       <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
         <WishlistForm onWishCreated={handleWishCreated} />
       </Modal>

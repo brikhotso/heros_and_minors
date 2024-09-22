@@ -1,10 +1,9 @@
-// DonationList.js
 import axiosInstance from '../axiosConfig';
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Modal from './Modal';
 import DonationForm from './DonationForm';
-import styles from './CommonStyles.module.css';
+import commonStyles from './CommonStyles.module.css';
 
 function DonationList() {
   const [donations, setDonations] = useState([]);
@@ -166,7 +165,7 @@ function DonationList() {
   };
 
   return (
-    <div className={CommonStyles.container}>
+    <div className={commonStyles.container}>
       <h2>📝 Donations List</h2>
       <button onClick={() => {
         if (!token) {
@@ -174,16 +173,16 @@ function DonationList() {
         } else {
           setIsModalOpen(true);
         }
-      }} className={CommonStyles.createButton}>Create Donation 🎁</button>
+      }} className={commonStyles.createButton}>Create Donation 🎁</button>
       <ul>
         {donations.map((donation) => (
-          <li key={donation._id} className={CommonStyles.listItem}>
+	  <li key={donation._id} className={commonStyles.listItem}>
             <strong>{donation.title} 🎈</strong> - {donation.description} (Posted by: {donation.donor.name})
             <p>Type: {donation.type}</p>
             <p>Condition: {donation.condition}</p>
             <p>Status: {donation.status}</p>
 
-            <div className={CommonStyles.buttonContainer}>
+            <div className={commonStyles.buttonContainer}>
               {donation.status === 'available' && currentUser && currentUser._id !== donation.donor._id && (
                 <button onClick={() => handleRequestDonation(donation._id)}>Request Donation 🎁</button>
               )}
@@ -225,8 +224,8 @@ function DonationList() {
           </li>
         ))}
       </ul>
-      {message && <p className={CommonStyles.success}>{message}</p>}
-      {error && <p className={CommonStyles.error}>{error}</p>}
+      {message && <p className={commonStyles.success}>{message}</p>}
+      {error && <p className={commonStyles.error}>{error}</p>}
       <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
         <DonationForm onDonationCreatedOrUpdated={handleDonationCreatedOrUpdated} />
       </Modal>
