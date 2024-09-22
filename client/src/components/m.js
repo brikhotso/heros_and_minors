@@ -269,12 +269,14 @@ const MazeGame = () => {
 
     // Touch event handlers
     const handleTouchStart = useCallback((event) => {
-	const touch = event.touches[0];
+        event.preventDefault();
+        const touch = event.touches[0];
         setTouchStart({ x: touch.clientX, y: touch.clientY });
     }, []);
 
     const handleTouchMove = useCallback((event) => {
-	if (!touchStart) return;
+        event.preventDefault();
+        if (!touchStart) return;
 
         const touch = event.touches[0];
         const deltaX = touch.clientX - touchStart.x;
@@ -300,6 +302,7 @@ const MazeGame = () => {
     }, [touchStart, handleKeyDown]);
 
     const handleTouchEnd = useCallback((event) => {
+        event.preventDefault();
         setTouchStart(null);
     }, []);
 
@@ -314,6 +317,63 @@ const MazeGame = () => {
             window.removeEventListener('touchend', handleTouchEnd, { passive: false });
         };
     }, [handleTouchStart, handleTouchMove, handleTouchEnd]);
+
+    // Button touch event handlers
+    const handleTouchStartButton = (event) => {
+        event.preventDefault();
+        // Handle touch start for button
+    };
+
+    const handleTouchEndButton = (event) => {
+        event.preventDefault();
+        // Handle touch end for button
+        const targetId = event.target.id;
+        if (targetId === 'restartBtn') {
+            handleRestart();
+        } else if (targetId === 'difficulty') {
+            // Handle difficulty change if needed
+        } else if (event.target.classList.contains(styles.backButton)) {
+            // Handle back button click if needed
+        }
+    };
+
+    useEffect(() => {
+        const restartBtn = document.getElementById('restartBtn');
+        const difficultySelect = document.getElementById('difficulty');
+        const backButton = document.querySelector(`.${styles.backButton}`);
+
+        if (restartBtn) {
+            restartBtn.addEventListener('touchstart', handleTouchStartButton, { passive: false });
+            restartBtn.addEventListener('touchend', handleTouchEndButton, { passive: false });
+        }
+
+        if (difficultySelect) {
+            difficultySelect.addEventListener('touchstart', handleTouchStartButton, { passive: false });
+            difficultySelect.addEventListener('touchend', handleTouchEndButton, { passive: false });
+        }
+
+        if (backButton) {
+            backButton.addEventListener('touchstart', handleTouchStartButton, { passive: false });
+            backButton.addEventListener('touchend', handleTouchEndButton, { passive: false });
+        }
+
+        return () => {
+            if (restartBtn) {
+                restartBtn.removeEventListener('touchstart', handleTouchStartButton, { passive: false });
+                restartBtn.removeEventListener('touchend', handleTouchEndButton, { passive: false });
+            }
+
+            if (difficultySelect) {
+                difficultySelect.removeEventListener('touchstart', handleTouchStartButton, { passive: false });
+                difficultySelect.removeEventListener('touchend', handleTouchEndButton, { passive: false });
+            }
+
+            if (backButton) {
+                backButton.removeEventListener('touchstart', handleTouchStartButton, { passive: false });
+                backButton.removeEventListener('touchend', handleTouchEndButton, { passive: false });
+            }
+        };
+    }, []);
 
     return (
         <div id="mazeContainer" className={styles.mazeContainer}>

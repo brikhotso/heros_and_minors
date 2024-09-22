@@ -56,9 +56,9 @@ function Dashboard() {
           {isLoggedIn ? (
             <div className={styles.userInfo}>
               <span role="img" aria-label="waving hand">👋</span> Welcome, {userName}!
-	      <button onClick={handleLogout} className={styles.logoutBtn}>Logout</button>
-	      <button className={styles.hamburger} onClick={toggleSidebar}>
-		  &#9776; {/* Hamburger icon */}
+              <button onClick={handleLogout} className={styles.logoutBtn}>Logout</button>
+              <button className={styles.hamburger} onClick={toggleSidebar}>
+                  &#9776; {/* Hamburger icon */}
               </button>
             </div>
           ) : (

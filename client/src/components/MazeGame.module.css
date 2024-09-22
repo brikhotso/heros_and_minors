@@ -2,11 +2,15 @@
 @media (max-width: 600px) {
   .mazeContainer {
     padding: 10px;
-    height: auto;
     display: flex;
     flex-direction: column;
     align-items: center;
-    background: linear-gradient(135deg, #74ebd5, #acb6e5); /* Add background for mobile */
+    background: 
+        url('https://i.imgur.com/VpK7N2Q.png') no-repeat center, 
+        linear-gradient(135deg, #74ebd5, #acb6e5);
+    background-size: cover;
+    animation: gradient 15s ease infinite;
+    font-family: 'Comic Sans MS', 'Chalkboard SE', 'Comic Neue', cursive;
   }
 
   .mazeCanvas {
@@ -14,37 +18,82 @@
     height: auto;
   }
 
-  button {
-    padding: 10px 15px;
-    font-size: 14px;
-    margin: 5px;
-  }
-
-  select {
-    padding: 10px;
-    font-size: 14px;
-    margin: 5px;
-  }
-
   .mazeControls {
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin_top: auto;
     margin-bottom: 10px;
+    width: 90%; /* Better responsive control width */
   }
 
+  button, select {
+    padding: 10px;
+    font-size: 4vw; /* Relative to screen width */
+    margin: 5px 0;
+    width: 100%;
+    max-width: 300px; /* Set a max-width to avoid oversized buttons */
+    border-radius: 8px;
+  }
+
+  /* Restart Button Styling */
+  .restartBtn {
+    background-color: #ff6f61;
+    color: white;
+    font-weight: bold;
+    transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+  }
+
+  .restartBtn:hover {
+    background-color: #ff8c69;
+    transform: scale(1.05);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+  }
+
+  .restartBtn:active {
+    transform: scale(0.95);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+
+  /* Difficulty Select Styling */
+  .difficulty {
+    background-color: #ffcc5c;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+  }
+
+  .difficulty:hover {
+    background-color: #ffe066;
+    transform: scale(1.05);
+  }
+
+  /* Back Button Styling */
+  .backButton {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: #ff6699;
+    color: white;
+    text-decoration: none;
+    padding: 10px 15px;
+    font-size: 4vw;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+  }
+
+  .backButton:hover {
+    background-color: #ff3366;
+  }
+
+  /* Modal Styles */
   .modalContent {
     padding: 15px;
   }
 
   .modalButton {
-    padding: 8px 15px;
-    font-size: 14px;
-  }
-
-  .backButton {
-    padding: 8px 15px;
-    font-size: 14px;
+    padding: 10px;
+    font-size: 4vw;
   }
 }
 
@@ -56,7 +105,12 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    background: linear-gradient(135deg, #74ebd5, #acb6e5); /* Add background for tablets */
+    background: 
+        url('https://i.imgur.com/VpK7N2Q.png') no-repeat center, /* Frame image */
+        linear-gradient(135deg, #74ebd5, #acb6e5); /* Animated gradient */
+    background-size: cover, cover; /* Cover the entire background */
+    animation: gradient 15s ease infinite; /* Background animation */
+    font-family: 'Comic Sans MS', 'Chalkboard SE', 'Comic Neue', cursive; /* Fun fonts */
   }
 
   .mazeCanvas {
@@ -68,12 +122,14 @@
     padding: 12px 20px;
     font-size: 16px;
     margin: 8px;
+    width: 100%; /* Make buttons responsive */
   }
 
   select {
     padding: 12px;
     font-size: 16px;
     margin: 8px;
+    width: 100%; /* Make dropdowns responsive */
   }
 
   .mazeControls {
@@ -81,6 +137,7 @@
     flex-direction: row;
     justify-content: center;
     margin-bottom: 15px;
+    width: 100%; /* Ensure controls are responsive */
   }
 
   .modalContent {

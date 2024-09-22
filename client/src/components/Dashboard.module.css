@@ -1,4 +1,4 @@
-/* Dashboard.module.css */
+/* General Styles */
 .dashboard {
   display: flex;
   flex-direction: column;
@@ -92,12 +92,7 @@
   padding: 20px;
   margin: 20px;
   overflow-y: auto; /* Make sidebar scrollable */
-  transform: translateX(-100%); /* Initially hidden off-screen */
   transition: transform 0.3s ease; /* Smooth sliding effect */
-}
-
-.sidebar.active {
-  transform: translateX(0); /* Slide in when active */
 }
 
 .sidebar ul {
@@ -150,16 +145,6 @@
 
 /* Mobile Devices */
 @media (max-width: 600px) {
-  .dashboard {
-    flex-direction: column;
-  }
-
-  .header {
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-  }
-
   .hamburger {
     display: block; /* Show the hamburger icon on mobile */
   }
@@ -171,6 +156,10 @@
     height: 100vh;
     z-index: 1000;
     transform: translateX(-100%); /* Hidden initially */
+  }
+
+  .sidebar.active {
+    transform: translateX(0); /* Slide in when active */
   }
 
   .mainContent {
