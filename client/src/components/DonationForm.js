@@ -61,7 +61,7 @@ function DonationForm({ onDonationCreatedOrUpdated }) {
 
       onDonationCreatedOrUpdated(); // Call the callback to refresh the donation list
     } catch (err) {
-      setError('Error creating donation');
+	setError('Error creating donation');
     }
   };
 
@@ -80,8 +80,8 @@ function DonationForm({ onDonationCreatedOrUpdated }) {
       setIsEditing(false);
       onDonationCreatedOrUpdated(); // Call the callback to refresh the donation list
     } catch (err) {
-        setError('Error updating donation');
-	console.error(err);
+      setError('Error updating donation');
+      setMessage(null);
     }
   };
 

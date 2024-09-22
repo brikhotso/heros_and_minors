@@ -147,6 +147,8 @@
 @media (max-width: 600px) {
   .hamburger {
     display: block; /* Show the hamburger icon on mobile */
+    width: 20px; /* Adjust width */
+    height: 20px;  
   }
 
   .sidebar {
