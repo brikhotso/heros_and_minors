@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, useState } from 'react';
+import React, { useRef, useEffect, useState, useCallback } from 'react';
 import styles from './MazeGame.module.css'; // Import the CSS module
 import { Link } from 'react-router-dom';
 
@@ -10,8 +10,7 @@ const MazeGame = () => {
     const [player, setPlayer] = useState({ x: 1, y: 1 });
     const [showModal, setShowModal] = useState(false);
     const [modalMessage, setModalMessage] = useState('');
-    const [imagesLoaded, setImagesLoaded] = useState;
-
+    const [imagesLoaded, setImagesLoaded] = useState(false);
 
     // Define maze configurations for different difficulty levels
     const mazeConfigs = {
@@ -140,11 +139,11 @@ const MazeGame = () => {
             playerImage.onload = null;
             endpointImage.onload = null;
         };
-    }, []);
-    
-    const drawMaze = () => {
-	if (!imagesLoaded) return;
-	
+    }, [wallImage, playerImage, endpointImage, setImagesLoaded]);
+
+    const drawMaze = useCallback(() => {
+        if (!imagesLoaded) return;
+
         const canvas = canvasRef.current;
         const ctx = canvas.getContext('2d');
         const maze = mazeConfigs[difficulty][currentMazeIndex]?.maze;
@@ -181,7 +180,7 @@ const MazeGame = () => {
         }
 
         drawPlayer(offsetX + player.x * tileSize, offsetY + player.y * tileSize);
-    };
+    }, [difficulty, currentMazeIndex, player, imagesLoaded, wallImage]);
 
     const drawPlayer = (x, y) => {
         const canvas = canvasRef.current;
@@ -197,7 +196,7 @@ const MazeGame = () => {
 
     useEffect(() => {
         drawMaze();
-    }, [difficulty, currentMazeIndex, player]);
+    }, [difficulty, currentMazeIndex, player, imagesLoaded, drawMaze]);
 
     const handleRestart = () => {
         const start = mazeConfigs[difficulty][currentMazeIndex].start;
@@ -210,7 +209,7 @@ const MazeGame = () => {
         handleRestart();
     };
 
-    const handleKeyDown = (event) => {
+    const handleKeyDown = useCallback((event) => {
         const maze = mazeConfigs[difficulty][currentMazeIndex].maze;
         let newX = player.x;
         let newY = player.y;
@@ -258,18 +257,18 @@ const MazeGame = () => {
                 }, 2000);
             }
         }
-    };
+    }, [difficulty, currentMazeIndex, player]);
 
     useEffect(() => {
         window.addEventListener('keydown', handleKeyDown);
         return () => {
             window.removeEventListener('keydown', handleKeyDown);
         };
-    }, [player, difficulty, currentMazeIndex]);
+    }, [handleKeyDown]);
 
     return (
-          <div id="mazeContainer" className={styles.mazeContainer}>
-	    <Link to="/dashboard" className={styles.backButton}>Back to Dashboard</Link>
+        <div id="mazeContainer" className={styles.mazeContainer}>
+            <Link to="/dashboard" className={styles.backButton}>Back to Dashboard</Link>
             <div id="mazeControls" className={styles.mazeControls}>
                 <select id="difficulty" value={difficulty} onChange={handleDifficultyChange} className={styles.difficulty}>
                     <option value="easy">Easy</option>
