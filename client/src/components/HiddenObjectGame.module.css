@@ -1,8 +1,16 @@
 /* Mobile Devices */
 @media (max-width: 600px) {
   .gameContainer {
-    padding: 10px;
-    height: auto;
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(135deg, #ff9a9e, #fad0c4, #fad0c4, #fad0c4, #ff9a9e);
+    background-size: 400% 400%;
+    animation: gradientBackground 15s ease infinite;
+    font-family: 'Comic Sans MS', sans-serif; /* Fun font */
   }
 
   .gameContainerInner {
@@ -16,10 +24,80 @@
     height: auto;
     object-fit: contain; /* Ensure image scales while maintaining aspect ratio */
   }
-
+  /* Hidden Object Styles */
   .hiddenObject {
-    width: 30px; /* Smaller objects for mobile */
-    height: 30px;
+      position: absolute;
+      z-index: 2;
+      width: 30px;
+      height: 30px;
+      cursor: pointer;
+      transition: transform 0.3s;
+  }
+
+  .hiddenObject:hover {
+      transform: scale(1.1); /* Slightly enlarge on hover */
+  }
+
+  .targetImage {
+      width: 30px; /* Adjust size as needed */
+      height: 30px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.8);
+  }
+
+   /* Instruction Container */
+  .instructionContainer {
+      position: relative;
+      z-index: 2;
+      background: rgba(255, 255, 255, 0.8); /* Optional: Add a translucent background to make text more readable */
+      padding: 10px;
+      border-radius: 5px;
+      display: flex;
+      align-items: center; /* Vertically align instruction and image */
+      justify-content: center; /* Horizontally center instruction and image */
+      margin-bottom: 20px;
+      width: 330px; /* Adjust size as needed */
+      height: auto;
+      margin: 5px; /* Center the container */
+  }
+
+  .instruction {
+      margin-right: 10px; /* Space between text and image */
+      font-size: 12px;
+      font-weight: bold;
+  }
+  .gameOverMessage {
+      position: absolute;
+      z-index: 10;
+      top: 50%;  /* Center it vertically */
+      left: 50%; /* Center it horizontally */
+      transform: translate(-50%, -50%); /* Adjust position based on its own width/height */
+      background: rgba(255, 255, 255, 0.9);
+      padding: 10px;
+      border-radius: 10px;
+      font-size: 14px;
+      font-weight: bold;
+      color: #4CAF50;
+      box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
+      text-align: center;
+      animation: bounceIn 1s ease;
+  }
+  .backButton {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      padding: 10px 20px;
+      border-radius: 5px;
+      border: none;
+      background-color: #ff6699;
+      color: white;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background-color 0.3s ease;
+  }
+
+  .backButton:hover {
+      background-color: #ff3366;
   }
 }
 
