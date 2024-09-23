@@ -30,7 +30,7 @@ const HiddenObjectGame = () => {
 
   return (
       <div className={styles.gameContainer}>
-      <Link to="/dashboard" className={styles.backButton}>Back to Dashboard</Link>
+      <Link to="/dashboard" className={styles.backButton}>🏠</Link>
       <div className={styles.gameContainerInner}>
         <div className={styles.instructionContainer}>
           {!gameOver && (

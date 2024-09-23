@@ -317,7 +317,7 @@ const MazeGame = () => {
 
     return (
         <div id="mazeContainer" className={styles.mazeContainer}>
-            <Link to="/dashboard" className={styles.backButton}>Back to Dashboard</Link>
+            <Link to="/dashboard" className={styles.backButton}>🏠</Link>
             <div id="mazeControls" className={styles.mazeControls}>
                 <select id="difficulty" value={difficulty} onChange={handleDifficultyChange} className={styles.difficulty}>
                     <option value="easy">Easy</option>
